@@ -1,0 +1,19 @@
+{
+  "name": "lifeboat",
+  "version": "1.0.0",
+  "description": "foster care management system (fostering the fosters for the fostered ones)",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "foster",
+    "care",
+    "fosters",
+    "gov",
+    "government"
+  ],
+  "author": "efen",
+  "license": "ISC"
+}
