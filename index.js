@@ -7,6 +7,7 @@ var passport = require('passport')
 
 // import application routing files
 // routes
+var baseRoutes = require('./routes/base')
 var govStaffRoutes = require('./routes/gov-staff')
 var facilityRoutes = require('./routes/facility')
 var supervisorRoutes = require('./routes/supervisor')
@@ -35,6 +36,7 @@ app.use('/api/gov-staff', govStaffRoutes)
 app.use('/api/facility', facilityRoutes)
 app.use('/api/supervisor', supervisorRoutes)
 app.use('/api/kid', kidRoutes)
+app.use('/api', baseRoutes)
 
 
 // start the server on port 3000
