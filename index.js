@@ -1,6 +1,9 @@
 // external libraries imports
 var express = require('express')
+var bodyParser = require('body-parser')
 
+// passport
+var passport = require('passport')
 
 // import application routing files
 // routes
@@ -15,8 +18,19 @@ var dbConnection = require('./config/mysql')
 // initializing the application instance
 var app = express()
 
+// setup body parser to help access json and other data from clients
+// parse application/x-www-form-urlencoded and json
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// setup passport
+app.use(passport.initialize())
+app.use(passport.session())
+
+require('./config/passport')
+
+
 // set up the routes
-app.use('/api/gov', govRoutes)
 app.use('/api/gov-staff', govStaffRoutes)
 app.use('/api/facility', facilityRoutes)
 app.use('/api/supervisor', supervisorRoutes)
