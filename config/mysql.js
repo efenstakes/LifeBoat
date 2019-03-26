@@ -1,12 +1,15 @@
 // import external libraries used
 var mysql = require('mysql')
 
+// include app configuration variables
+var AppVars = require('./vars')
+
 // setup database connection details
 var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'lifeboat' 
+    host: AppVars.database.host,
+    user:  AppVars.database.user,
+    password:  AppVars.database.password,
+    database:  AppVars.database.database 
 })
 
 // establish a connection using the set details

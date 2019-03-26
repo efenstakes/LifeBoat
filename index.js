@@ -1,6 +1,7 @@
 // external libraries imports
 var express = require('express')
 
+// include database connection
 var dbConnection = require('./config/mysql')
 
 // initializing the application instance
