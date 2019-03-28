@@ -13,9 +13,6 @@ var facilityRoutes = require('./routes/facility')
 var supervisorRoutes = require('./routes/supervisor')
 var kidRoutes = require('./routes/foster-kid')
 
-// include database connection
-var dbConnection = require('./config/mysql')
-
 // initializing the application instance
 var app = express()
 
