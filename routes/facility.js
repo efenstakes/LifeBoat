@@ -2,13 +2,12 @@
 var express = require('express')
 var router = express.Router()
 
-// save route
+// save a facility
 router.post('/save', function(req, res) {
     res.send('save')
 })
 
-
-// delete route
+// delete a facility
 router.post('/delete', function(req, res) {
     res.send('delete facility')
 })
