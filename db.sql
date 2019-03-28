@@ -5,25 +5,28 @@ create database if not exists lifeboat;
 
 
 create table gov_staff (
-  id int,
+  id int AUTO_INCREMENT,
   name varchar(30),
   password varchar(200),
+  email varchar(90),
   city varchar(20),
-  staff_type enum('REGULAR', 'ADMIN', 'SUPER_ADMIN'),
+  staff_type enum('REGULAR', 'ADMIN', 'SUPER_ADMIN') default 'REGULAR',
   primary key(id)
 );
 
 create table facilities (
-  id int,
+  id int AUTO_INCREMENT,
   name varchar(40),
   city varchar(30),
+  verified_by int,
+  foreign key(verified_by) references gov_staff(id),
   primary key(id)
 );
 
 
 -- keep data about supervisors of facilities
 create table supervisors (
-  id int,
+  id int AUTO_INCREMENT,
   name varchar(30),
   password varchar(200),
   city varchar(20),
@@ -37,39 +40,39 @@ create table supervisors (
 
 
 create table foster_kids (
-  id int,
+  id int AUTO_INCREMENT,
   name varchar(30),
   dob datetime,
   reason_here longtext,
-  facility_id int,
-  foreign key(facility_id) references facilities(id),
+  verified_by int,
+  foreign key(verified_by) references gov_staff(id),
   primary key(id)
 );
 
 -- keep history of which facilities a foster kid has been to
 -- 
--- overseer_supervisor_id
+-- verified_by
 -- could be empty at first when if the site supervisor adds 
 -- them and before a government staffer oversees it 
 -- so we don't link the column as foreign key to avoid constraint errors
 create table facility_kids (
-  id int,
+  id int AUTO_INCREMENT,
   facility_id int,
   foster_kid_id int,
-  overseer_supervisor_id int, 
+  verified_by int, 
   joined_on datetime,
   left_on datetime,
   reason longtext,
   foreign key(facility_id) references facilities(id),
   foreign key(foster_kid_id) references foster_kids(id),
-  -- foreign key(overseer_supervisor_id) references supervisors(id),
+  -- foreign key(verified_by) references gov_staff(id),
   primary key(id)
 );
 
 
 -- keep history of which facilities a supervisor has been to
 create table facility_supervisors (
-  id int,
+  id int AUTO_INCREMENT,
   facility_id int,
   supervisor_id int,
   joined_on datetime,
@@ -84,7 +87,7 @@ create table facility_supervisors (
 
 -- keep history of inspections done in facilities 
 create table facility_inspections (
-  id int,
+  id int AUTO_INCREMENT,
   facility_id int,
   gov_staff_id int,
   done_on datetime,
@@ -98,7 +101,7 @@ create table facility_inspections (
 
 -- keep history of inspections done on facility supervisors while a facility is inspected 
 create table supervisor_inspections (
-  id int,
+  id int AUTO_INCREMENT,
   facility_id int,
   supervisor_id int,
   done_on datetime,
