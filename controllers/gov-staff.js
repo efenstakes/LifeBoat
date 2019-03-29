@@ -62,8 +62,7 @@ exports.accountExists = async function(req, res) {
 
     let query = 'select * from gov_staff where name = ?'
     let [ rows ] = await db.execute(query, [ name ])
-    console.log('error', rows)
-
+    
     if( rows[0] ) {
         let isMatch = await bcrypt.compare(password, rows[0]['password'])
 
@@ -136,7 +135,6 @@ exports.setPriviledge = async function(req, res) {
        
         let query = 'update gov_staff set staff_type = ? where id = ?'
         let [ result ] = await db.query(query, [ priviledge, target_staff_id ])
-        console.log('update res ', res)
         
         if( result.affectedRows > 0 ) {
             response.set = true 

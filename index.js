@@ -36,7 +36,7 @@ app.use('/api/kid', kidRoutes)
 app.use('/api', baseRoutes)
 
 
-// start the server on port 3000
-app.listen(3000, function(){
-    console.log('server started at 3000')
+// start the server on port 9999
+app.listen(9999, function(){
+    console.log('server started at 9999')
 })
