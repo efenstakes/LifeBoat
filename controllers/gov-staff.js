@@ -120,6 +120,7 @@ exports.getStafferDetails = async function(req, res) {
     let query = 'select * from gov_staff where id = ?'
     let [ rows, fields ] = await db.execute(query, [ staffer_id ]);
     response.details = rows[0] 
+    
     res.json(response)
 }
 
