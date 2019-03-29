@@ -74,7 +74,6 @@ exports.getFacilities = async function(req, res) {
         let facility = facilitiez.find( (fac)=> fac.id == row.facility_id )
         return { facility: facility, record: row }
     })
-
     response.facilities = facilities 
     
     res.json(response)

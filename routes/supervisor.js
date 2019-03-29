@@ -1,34 +1,28 @@
 // external libraries imports
-var express = require('express')
-var router = express.Router()
+var router = require('express').Router()
+var passport = require('passport')
+
+// internal modules/libraries imports
+var supervisorController = require('../controllers/supervisor')
+
 
 // save route
-router.post('/save', function(req, res) {
-    res.send('save supervisor')
-})
+router.post('/save', passport.authenticate('gov-staff-jwt', { session: false }), supervisorController.save)
 
 
 // delete route
-router.post('/delete', function(req, res) {
-    res.send('delete supervisor')
-})
+router.post('/delete', passport.authenticate('gov-staff-jwt', { session: false }), supervisorController.delete)
 
 
 // get supervisor details  
-router.get('/:id/details', function(req, res) {
-    res.send('get supervisor details')
-})
+router.get('/:id/details', supervisorController.getDetails)
+
 
 // get facilities this supervisor has been to 
-router.get('/:id/facilities', function(req, res) {
-    res.send('get facilities this supervisor has been to')
-})
+router.get('/:id/facilities', supervisorController.getFacilities)
 
-
-// write report that a facility supervisor was checked    
-router.post('/:id/write-report', function(req, res) {
-    res.send('write report that a facility supervisor was checked')
-})
+// get all supervisors  
+router.get('/all', supervisorController.getAll)
 
 
 module.exports = router 

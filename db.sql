@@ -34,6 +34,8 @@ create table supervisors (
   name varchar(30),
   password varchar(200),
   national_id varchar(20),
+  gender enum('MALE', 'FEMALE'),
+  dob datetime,
   verified_by int,
   joined_on datetime default NOW(),
   foreign key(verified_by) references gov_staff(id) on delete set null,
