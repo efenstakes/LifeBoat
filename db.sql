@@ -10,6 +10,7 @@ create table gov_staff (
   password varchar(200),
   email varchar(90),
   city varchar(20),
+  joined_on datetime DEFAULT NOW(),
   staff_type enum('REGULAR', 'ADMIN', 'SUPER_ADMIN') default 'REGULAR',
   primary key(id)
 );
@@ -18,7 +19,10 @@ create table facilities (
   id int AUTO_INCREMENT,
   name varchar(40),
   city varchar(30),
+  lat varchar(90),
+  lng varchar(90),
   verified_by int,
+  added_on datetime default NOW(),
   foreign key(verified_by) references gov_staff(id),
   primary key(id)
 );
@@ -32,6 +36,7 @@ create table supervisors (
   city varchar(20),
   supervisor_id int,
   facility_id int,
+  joined_on datetime default NOW(),
   foreign key(supervisor_id) references supervisors(id),
   foreign key(facility_id) references facilities(id),
   primary key(id)
@@ -42,9 +47,10 @@ create table supervisors (
 create table foster_kids (
   id int AUTO_INCREMENT,
   name varchar(30),
-  dob datetime,
+  dob datetime default NOW(),
   reason_here longtext,
   verified_by int,
+  joined_on datetime default NOW(),
   foreign key(verified_by) references gov_staff(id),
   primary key(id)
 );
@@ -60,8 +66,8 @@ create table facility_kids (
   facility_id int,
   foster_kid_id int,
   verified_by int, 
-  joined_on datetime,
-  left_on datetime,
+  joined_on datetime default NOW(),
+  left_on datetime default NOW(),
   reason longtext,
   foreign key(facility_id) references facilities(id),
   foreign key(foster_kid_id) references foster_kids(id),
@@ -75,8 +81,8 @@ create table facility_supervisors (
   id int AUTO_INCREMENT,
   facility_id int,
   supervisor_id int,
-  joined_on datetime,
-  left_on datetime,
+  joined_on datetime default NOW(),
+  left_on datetime default NOW(),
   reason longtext,
   foreign key(facility_id) references facilities(id),
   foreign key(supervisor_id) references supervisors(id),
@@ -90,7 +96,7 @@ create table facility_inspections (
   id int AUTO_INCREMENT,
   facility_id int,
   gov_staff_id int,
-  done_on datetime,
+  done_on datetime default NOW(),
   report longtext,
   status enum('GOOD STANDING', 'STANDING', 'POOR STANDING'),
   foreign key(facility_id) references facilities(id),
@@ -104,7 +110,7 @@ create table supervisor_inspections (
   id int AUTO_INCREMENT,
   facility_id int,
   supervisor_id int,
-  done_on datetime,
+  done_on datetime default NOW(),
   report longtext,
   status enum('GOOD STANDING', 'STANDING', 'POOR STANDING'),
   foreign key(facility_id) references facilities(id),
