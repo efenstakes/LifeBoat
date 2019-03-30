@@ -25,25 +25,6 @@ exports.save = async function(req, res) {
 }
 
 
-// write report that a facility was checked
-exports.saveReport = async function(req, res) {
-    let response = { saved: false, id: null }
-    
-    let { id } = req.params
-    let { gov_staff_id } = req.user.id
-    let { report, status } = req.body
-
-    let query = 'insert into facility_inspections ( facility_id, gov_staff_id, report, status ) values( ??, ??, ??, ?? )'
-    let [ result ] = await db.query(query, [ id, gov_staff_id, report, status ])
-
-    if( result.affectedRows  == 1 ) {
-        response.saved = true 
-        response.id = result.insertId
-    }
-    res.json(response)
-
-}
-
 // delete a facility
 exports.delete = async function(req, res) {
     let response = { deleted: false } 

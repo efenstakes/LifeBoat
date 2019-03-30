@@ -12,6 +12,7 @@ var govStaffRoutes = require('./routes/gov-staff')
 var facilityRoutes = require('./routes/facility')
 var supervisorRoutes = require('./routes/supervisor')
 var kidRoutes = require('./routes/foster-kid')
+var reportRoutes = require('./routes/report')
 
 // initializing the application instance
 var app = express()
@@ -33,6 +34,7 @@ app.use('/api/gov-staff', govStaffRoutes)
 app.use('/api/facility', facilityRoutes)
 app.use('/api/supervisor', supervisorRoutes)
 app.use('/api/kid', kidRoutes)
+app.use('/api/report', reportRoutes)
 app.use('/api', baseRoutes)
 
 

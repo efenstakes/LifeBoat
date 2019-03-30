@@ -110,10 +110,12 @@ create table supervisor_inspections (
   id int AUTO_INCREMENT,
   facility_id int,
   supervisor_id int,
+  gov_staff_id int,
   done_on datetime default NOW(),
   report longtext,
   status enum('GOOD STANDING', 'STANDING', 'POOR STANDING'),
   foreign key(facility_id) references facilities(id) on delete set null,
+  foreign key(gov_staff_id) references gov_staff(id) on delete set null,
   foreign key(supervisor_id) references supervisors(id) on delete cascade,
   primary key(id)
 );
