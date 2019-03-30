@@ -10,7 +10,7 @@ var reportControllers = require('../controllers/report')
 router.post('/facility', passport.authenticate('gov-staff-jwt', { session: false }), reportControllers.saveForFacility)
 
 // get reports of a facility
-router.get('/facility', reportControllers.getFacilityReports)
+router.get('/facility/:id', reportControllers.getFacilityReports)
 
 
 // save a report for a supervisor
@@ -19,3 +19,4 @@ router.post('/supervisor', passport.authenticate('gov-staff-jwt', { session: fal
 // get reports of a supervisor
 router.get('/supervisor/:id', reportControllers.getSupervisorReports)
 
+module.exports = router
