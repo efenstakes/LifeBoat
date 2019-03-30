@@ -10,11 +10,11 @@ var govStaffControllers = require('../controllers/gov-staff')
 
 // save a government staff
 // they are added by an admin or super admin staffer so use passport.authenticate('jwt', { session: false })
-router.post('/save', passport.authenticate('gov-staff-jwt', { session: false }), govStaffControllers.save)
+router.post('/', passport.authenticate('gov-staff-jwt', { session: false }), govStaffControllers.save)
 
 
 // delete a government staffer
-router.post('/delete', passport.authenticate('gov-staff-jwt', { session: false }), govStaffControllers.delete)
+router.delete('/', passport.authenticate('gov-staff-jwt', { session: false }), govStaffControllers.delete)
 
 
 // check if an account exists   
@@ -31,7 +31,7 @@ router.post('/:name/name-used', govStaffControllers.nameUsed)
 
 
 // get the details of a staffer  
-router.get('/:id/details', govStaffControllers.getStafferDetails)
+router.get('/:id/', govStaffControllers.getStafferDetails)
 
 
 // set the priviledge a staffer has
@@ -57,6 +57,10 @@ router.get('/:id/facility-inspections', govStaffControllers.getFacilitiesInspect
 
 // get facilities this staffer has inspected in a city route
 router.get('/:id/facilities/city/:city', govStaffControllers.getFacilitiesInspectedInCity)
+
+
+// get all government staffers 
+router.post('/', passport.authenticate('gov-staff', { session: false }), govStaffControllers.getAll)
 
 
 // login a government staffer 

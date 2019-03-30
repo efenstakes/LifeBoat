@@ -233,6 +233,25 @@ exports.getFacilitiesInspectedInCity = async function(req, res) {
 }
 
 
+// get all government staffers
+exports.getAll = async function(req, res) {
+    
+    let response = { staffers: [] }
+    let { staff_type } = req.user 
+
+    if( staff_type !== 'SUPER_ADMIN' ) {
+        return res.json(response)
+    }
+
+    let query = 'select * from gov_staff'
+    let [ result ] = await db.query(query)
+    response.staffers = result
+        
+    res.json(response);
+}
+
+
+
 // login a government staffer 
 exports.login = async function(req, res) {
     
