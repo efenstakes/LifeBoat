@@ -64,11 +64,17 @@ jwt_opts.secretOrKey = AppVars.jwt.secret
 
 // handle jwt authentication for government staffers
 passport.use('gov-staff-jwt', new JwtStrategy(jwt_opts, async function(jwt_payload, done) {
-                
-        let staffer_id = jwt_payload.data 
+  
+        let { id, timestamp } = jwt_payload.data  
+
+        // if this timestamp is older than 60 minutes, invalidate it
+        if( (Date.now() - timestamp) > 3600000 ) { 
+          return done(false)
+        }
+
         let query = 'select * from gov_staff where id = ?'
 
-        let [ rows ] = await db.query(query, [ staffer_id ])
+        let [ rows ] = await db.query(query, [ id ])
 
         if( rows[0] ) {
           return done(null, rows[0])
@@ -80,11 +86,16 @@ passport.use('gov-staff-jwt', new JwtStrategy(jwt_opts, async function(jwt_paylo
 
 // handle jwt authentication for supervisors 
 passport.use('supervisor-jwt', new JwtStrategy(jwt_opts, async function(jwt_payload, done) {
-                
-  let supervisor_id = jwt_payload.data 
-  let query = 'select * from supervisors where id = ?'
+                  
+  let { id, timestamp } = jwt_payload.data  
 
-  let [ rows ] = await db.query(query, [ supervisor_id ])
+  // if this timestamp is older than 60 minutes, invalidate it
+  if( (Date.now() - timestamp) > 3600000 ) { 
+    return done(false)
+  }
+
+  let query = 'select * from supervisors where id = ?'
+  let [ rows ] = await db.query(query, [ id ])
 
   if( rows[0] ) {
     return done(null, rows[0])

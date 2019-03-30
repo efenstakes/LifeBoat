@@ -120,7 +120,7 @@ exports.getStafferDetails = async function(req, res) {
     let query = 'select * from gov_staff where id = ?'
     let [ rows, fields ] = await db.execute(query, [ staffer_id ]);
     response.details = rows[0] 
-    
+
     res.json(response)
 }
 
@@ -240,7 +240,8 @@ exports.login = async function(req, res) {
 
     if( req.user && req.user.id ) {
 
-        let token = jwt.sign({ data: req.user.id }, AppVars.jwt.secret)
+        let token_data = { id: req.user.id, timestamp: Date.now() }
+        let token = jwt.sign({ data: token_data }, AppVars.jwt.secret)
         response.token = token 
         response.user = req.user 
 
