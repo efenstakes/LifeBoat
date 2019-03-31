@@ -61,16 +61,24 @@ It helps with these tasks:
 ## API
 The server runs on port 9000 and follows REST API best practices. It has 4 main parent routes 
 
-[domain](http://localhost:9000)/api/*entity*
-Where *entity* is either gov-staff, facility, kid or report 
+[domain](http://localhost:9000)/api/*entity*,
+where *entity* is either gov-staff, facility, kid or report 
 
-http://localhost:9000/gov-staff/
-http://localhost:9000/facility/
-http://localhost:9000/kid/
-http://localhost:9000/report/
+```sh
+ http://localhost:9000/gov-staff/
+ http://localhost:9000/facility/
+ http://localhost:9000/kid/
+ http://localhost:9000/report/
+```
 
 Each deals with a specific system entity.
  
 
 ## Contributing
-Contributions to the LifeBoat server are welcome.  
+Contributions to the LifeBoat server are welcome. Contributions are accepted using GitHub pull requests. If you're not familiar with making GitHub pull requests, please refer to the GitHub documentation "Creating a pull request".
+
+For a good pull request, we ask you provide the following:
+
+* Try to include a clear description of your pull request in the description. It should include the basic "what" and "why"s for the request.  
+
+* Follow the same code formatting model used in the existing code base
