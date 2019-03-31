@@ -1,4 +1,4 @@
-# LifeBoat ( fostering the fosters for the fostered one )
+# LifeBoat ( fostering the fosters for the fostered ones )
 
 ## Table of Contents
 
