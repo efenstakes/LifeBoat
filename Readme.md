@@ -1,11 +1,14 @@
-# LifeBoat ( fostering the fosters for the fostered ones )
+# LifeBoat 
+( *fostering the fosters for the fostered ones* )
 
 ## Table of Contents
 
 - [Install](#install)
 - [Introduction](#introduction)
 - [API](#api)
-- [Contributing](#Contributing)
+- [Contributing](#contributing)
+- [SecurityVulnerabilities](#security-vulnerabilities)
+- [Licence](#licence)
 
 
 
@@ -24,6 +27,7 @@ $ cd LifeBoat
 $ npm install
 $ npm start
 ```
+
 
 ## Introduction 
 LifeBoat is a foster care management system. It helps governments and officials who run the foster
@@ -82,3 +86,11 @@ For a good pull request, we ask you provide the following:
 * Try to include a clear description of your pull request in the description. It should include the basic "what" and "why"s for the request.  
 
 * Follow the same code formatting model used in the existing code base
+
+
+# Security Vulnerabilities
+If you discover a security vulnerability within Laravel, please send an e-mail to Efen via efenstakes101@gmail.com. All security vulnerabilities will be promptly addressed.
+
+
+# Licence
+The LifeBoat server is open-source software licensed under the [ISC Licence](https://www.isc.org/downloads/software-support-policy/isc-license/)
