@@ -4,6 +4,8 @@
 
 - [Install](#install)
 - [Introduction](#introduction)
+- [API](#api)
+- [Contributing](#Contributing)
 
 
 
@@ -54,3 +56,18 @@ It helps with these tasks:
 4. Authenticate system operations
 5. Assure donors and sponsors that they are contributing to verified facilities 
 6. Auditing the system for example who verified a facility, when and what report did they give?
+
+
+## API
+The server runs on port 9000 and follows REST API best practices. It has 4 main parent routes 
+
+[domain](http://localhost:9000)/api/*entity*
+Where *entity* is either gov-staff, facility, kid or report 
+
+http://localhost:9000/gov-staff/
+http://localhost:9000/facility/
+http://localhost:9000/kid/
+http://localhost:9000/report/
+
+Each deals with a specific system entity.
+ 
