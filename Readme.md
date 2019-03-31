@@ -14,7 +14,7 @@ LifeBoat is a foster care management system. It helps governments and officials 
 care system or any foster facilities manage their tasks and help in decision making.  
 
 Before downloading and running this server, [download and install Node.js](https://nodejs.org/en/download/).
-Node.js 8.* or higher is required as well as [mysql server](https://).
+Node.js 8.* or higher is required as well as [mysql server](https://dev.mysql.com/downloads/).
 
 Installation is done by first using the `npm clone` command to get the repo then copying the contents of db.sql and creating the database 
 
