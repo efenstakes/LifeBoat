@@ -52,16 +52,20 @@ exports.getDetails = async function(req, res) {
     let facilitySupervisorQuery = 'select * from facilities where id in ( select facility_id from facility_supervisors where supervisor_id = ? )'
     let facilitiesQuery = 'select * from facility_supervisors where supervisor_id = ?'
 
-    let [ rows ] = await db.execute(query, [ id ]);
-    let [ facilitySupervisorResult ] = await db.execute(facilitySupervisorQuery, [ id ]);
-    let [ facilitiesResult ] = await db.execute(facilitiesQuery, [ id ]);
+    let [ rows ] = await db.execute(query, [ id ])
 
-    let facilityMap = facilitiesResult.map( (facility)=> {
-        let record = facilitySupervisorResult.find( (facty)=> facty.facility_id == facility.id )
-        return { facility: facility, record: record }
-    })
-    response.details = rows[0] 
-    response.history = facilityMap 
+    if( rows && rows[0] ) {
+        let [ facilitySupervisorResult ] = await db.execute(facilitySupervisorQuery, [ id ])
+        let [ facilitiesResult ] = await db.execute(facilitiesQuery, [ id ])    
+    
+        let facilityMap = facilitiesResult.map( (facility)=> {
+            let record = facilitySupervisorResult.find( (facty)=> facty.facility_id == facility.id )
+            return { facility: facility, record: record }
+        })
+        response.details = rows[0] 
+        response.history = facilityMap 
+        
+    }
 
     res.json(response)
 }

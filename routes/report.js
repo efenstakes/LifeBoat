@@ -19,3 +19,4 @@ router.post('/supervisor', passport.authenticate('gov-staff-jwt', { session: fal
 // get reports of a supervisor
 router.get('/supervisor/:id', reportControllers.getSupervisorReports)
 
+module.exports = router

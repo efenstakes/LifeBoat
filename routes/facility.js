@@ -7,16 +7,16 @@ var facilityControllers = require('../controllers/facility')
 
 
 // save a facility
-router.post('/save', passport.authenticate('gov-staff-jwt', { session: false }), facilityControllers.save)
+router.post('/', passport.authenticate('gov-staff-jwt', { session: false }), facilityControllers.save)
 
 
 // delete a facility
-router.post('/delete', passport.authenticate('gov-staff-jwt', { session: false }), facilityControllers.delete) 
+router.delete('/', passport.authenticate('gov-staff-jwt', { session: false }), facilityControllers.delete) 
 
 
 // get details of a facility 
 // its supervisor, inspections, kids, location etc..
-router.get('/:id/details', facilityControllers.getDetails)
+router.get('/:id', facilityControllers.getDetails)
 
 
 // get kids in a facility 
@@ -32,7 +32,7 @@ router.get('/:id/supervisors', facilityControllers.getSupervisors)
 
 
 // get all facilities   
-router.get('/all', facilityControllers.getAll)
+router.get('/', facilityControllers.getAll)
 
 
 // get all facilities in a city   
