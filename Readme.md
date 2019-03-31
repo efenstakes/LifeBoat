@@ -71,3 +71,6 @@ http://localhost:9000/report/
 
 Each deals with a specific system entity.
  
+
+## Contributing
+Contributions to the LifeBoat server are welcome.  
