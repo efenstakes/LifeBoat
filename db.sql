@@ -48,6 +48,7 @@ create table foster_kids (
   id int AUTO_INCREMENT,
   name varchar(30),
   dob datetime default NOW(),
+  gender enum('MALE', 'FEMALE', 'OTHER') default 'OTHER',
   reason_here longtext,
   verified_by int,
   joined_on datetime default NOW(),

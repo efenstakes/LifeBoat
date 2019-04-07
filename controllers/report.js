@@ -6,14 +6,13 @@ var db = require('../config/mysql')
 
 // write report when a facility is checked
 exports.saveForFacility = async function(req, res) {
-    let response = { saved: false, id: null }
+    let response = { saved: false, id: null, errors: [] }
     
-    let { id } = req.params
     let { gov_staff_id } = req.user.id
-    let { report, status } = req.body
+    let { facility_id, report, status } = req.body
 
     let query = 'insert into facility_inspections ( facility_id, gov_staff_id, report, status ) values( ??, ??, ??, ?? )'
-    let [ result ] = await db.query(query, [ id, gov_staff_id, report, status ])
+    let [ result ] = await db.query(query, [ facility_id, gov_staff_id, report, status ])
 
     if( result.affectedRows  == 1 ) {
         response.saved = true 
@@ -61,7 +60,7 @@ exports.getFacilityReports = async function(req, res) {
 
 // write report when a supervisor is checked
 exports.saveForSupervisor = async function(req, res) {
-    let response = { saved: false, id: null }
+    let response = { saved: false, id: null, errors: [] }
     
     let { gov_staff_id } = req.user.id
     let { supervisor_id, facility_id, report, status } = req.body

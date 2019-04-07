@@ -76,6 +76,7 @@ where *entity* is either gov-staff, facility, kid or report
 ```
 
 Each deals with a specific system entity.
+The *docs* folder contains the server documentation files. *docs/apidoc* is the folder with API documentation for developers.
  
 
 ## Contributing
@@ -87,6 +88,13 @@ For a good pull request, we ask you provide the following:
 
 * Follow the same code formatting model used in the existing code base
 
+Finally when new code is added, run below command to generate new api documentation in docs/apidoc folder. 
+
+```sh
+
+ $ gulp apidoc
+
+```
 
 # Security Vulnerabilities
 If you discover a security vulnerability within Laravel, please send an e-mail to Efen via efenstakes101@gmail.com. All security vulnerabilities will be promptly addressed.

@@ -4,9 +4,11 @@ var bcrypt = require('bcrypt')
 // internal modules/libraries imports
 var db = require('../config/mysql')
 
+
 // save a supervisor
 exports.save = async function(req, res) {
     let response = { saved: false, id: null, errors: [] }
+
     let { name, password, confirmationPassword, dob, gender, national_id } = req.body 
     let verified_by = req.user.id
 

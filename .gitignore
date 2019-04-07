@@ -3,3 +3,5 @@ node_modules/
 config/vars.js
 
 .api
+
+.todo

@@ -7,7 +7,7 @@ var db = require('../config/mysql')
 // save a foster kid
 exports.save = async function(req, res) {
     let response = { saved: false, id: null, errors: [] }
-    let { name, dob, reason_here } = req.body 
+    let { name, dob, reason_here, gender } = req.body 
     let verified_by = req.user.id
 
     let query = 'insert into foster_kids ( name, dob, reason_here, verified_by ) values ( ?, ?, ?, ? )'
@@ -36,27 +36,50 @@ exports.delete = async function(req, res) {
 
 }
 
-// check if a foster kid exists  
+// check if a foster kid exists given their id 
 exports.exists = async function(req, res) {
-    let response = { results: {} }
+    let response = { exists: false, data: {} }
+    let { id } = req.params 
+
+    let query = 'select * from foster_kids where id = ?'
+    let [ rows, fields ] = await db.execute(query, [ id ]);
+
+    if( rows.length > 0 ) {
+        response.exists = true
+        response.data = rows[0]
+    }
+
+    res.json(response)
+}
+
+// check if a foster kid name is used  
+exports.nameUsed = async function(req, res) {
+    let response = { used: false, data: {} }
     let { name } = req.params 
 
     let query = 'select * from foster_kids where name = ?'
     let [ rows, fields ] = await db.execute(query, [ name ]);
-    response.results = rows
+
+    if( rows.length > 0 ) {
+        response.used = true
+        response.data = rows[0]
+    }
 
     res.json(response)
 }
 
 // get details of a foster kid
 exports.getDetails = async function(req, res) {
-    let response = { details: {} }
+    let response = { kid: {} }
     let id = req.params.id 
 
     let query = 'select * from foster_kids where id = ?'
     let [ rows, fields ] = await db.execute(query, [ id ]);
-    response.details = rows[0] 
 
+    if( rows.length > 0 ) {
+        response.kid = rows[0]
+    }
+    
     res.json(response)
 }
 

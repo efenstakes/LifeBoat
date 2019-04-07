@@ -151,7 +151,7 @@ exports.getKidPlacements = async function(req, res) {
     
     // get the kids details, facility details
 
-    let response = []
+    let response = { kids: [] }
     let staffer_id = req.params.id 
 
     let query = `select foster_kids.name as kid_name, foster_kids.dob as kid_dob, 
@@ -164,12 +164,12 @@ exports.getKidPlacements = async function(req, res) {
     let [ rows ] = await db.query(query, [ staffer_id ])
     console.log('rows', rows)
 
-    response = rows.map( (row)=> {
-                    let facilityQuery = 'select * from facilities where id = ?'
-                    let [ result ] = db.query(facilityQuery, [ row['facility_id'] ])
+    response.kids = rows.map( (row)=> {
+                        let facilityQuery = 'select * from facilities where id = ?'
+                        let [ result ] = db.query(facilityQuery, [ row['facility_id'] ])
 
-                    return { kid : row, facility: result }
-                })
+                        return { kid : row, facility: result }
+                    })
     res.json(response);
 }
 

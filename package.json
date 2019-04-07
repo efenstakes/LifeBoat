@@ -28,5 +28,9 @@
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-apidoc": "^0.2.8"
   }
 }
