@@ -259,7 +259,7 @@ exports.login = async function(req, res) {
 
     if( req.user && req.user.id ) {
 
-        let token_data = { id: req.user.id, timestamp: Date.now() }
+        let token_data = { id: req.user.id, type: 'GOV_STAFF', timestamp: Date.now() }
         let token = jwt.sign({ data: token_data }, AppVars.jwt.secret)
         response.token = token 
         response.user = req.user 

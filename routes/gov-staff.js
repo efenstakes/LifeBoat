@@ -123,6 +123,8 @@ router.post('/account-exists', govStaffControllers.accountExists)
 * @apiGroup Government Staff
 * @apiDescription  Check if a Government Staff Account Exists By Id
 *
+* @apiParam {Number} id the id of the government staff
+*
 * @apiExample {js} Example usage:
 * const data = {
 * }
@@ -149,6 +151,8 @@ router.post('/:id/exists', govStaffControllers.exists)
 * @apiGroup Government Staff
 * @apiDescription Check if a Government Staff Name is used
 *
+* @apiParam {Number} id the id of the government staff
+*
 * @apiExample {js} Example usage:
 * const data = {
 * }
@@ -173,6 +177,8 @@ router.post('/:name/name-used', govStaffControllers.nameUsed)
 * @apiName Get a Government Staffer Details
 * @apiGroup Government Staff
 * @apiDescription Get a Government Staffer Details
+*
+* @apiParam {Number} id the id of the government staff
 *
 * @apiExample {js} Example usage:
 * const data = {
@@ -199,6 +205,8 @@ router.get('/:id/', govStaffControllers.getStafferDetails)
 * @apiName Set a Government Staffer's Priviledge
 * @apiGroup Government Staff
 * @apiDescription Set the priviledge for a Government Staffer 
+*
+* @apiParam {Number} id the id of the government staff
 *
 * @apiExample {js} Example usage:
 * const data = {
@@ -229,6 +237,8 @@ router.post('/:id/set-priviledge', passport.authenticate('gov-staff-jwt', { sess
 * @apiGroup Government Staff
 * @apiDescription get kids that this staffer has placed in a childrens home or a foster home 
 *
+* @apiParam {Number} id the id of the government staff
+*
 * @apiExample {js} Example usage:
 * const data = {
 * }
@@ -254,6 +264,8 @@ router.get('/:id/foster-kids/placements', govStaffControllers.getKidPlacements)
 * @apiName get kids a staffer has verified to be added to the foster system  
 * @apiGroup Government Staff
 * @apiDescription get kids a staffer has verified to be added to the foster system 
+*
+* @apiParam {Number} id the id of the government staff
 *
 * @apiExample {js} Example usage:
 * const data = {
@@ -281,6 +293,8 @@ router.get('/:id/foster-kids/verifications', govStaffControllers.getKidVerificat
 * @apiGroup Government Staff
 * @apiDescription get facilities a staffer has verified 
 *
+* @apiParam {Number} id the id of the government staff
+*
 * @apiExample {js} Example usage:
 * const data = {
 * }
@@ -306,6 +320,8 @@ router.get('/:id/facilities', govStaffControllers.getFacilitiesVerified)
 * @apiName get facilities a staffer has inspected   
 * @apiGroup Government Staff
 * @apiDescription get facilities a staffer has inspected 
+*
+* @apiParam {Number} id the id of the government staff
 *
 * @apiExample {js} Example usage:
 * const data = {
@@ -333,6 +349,8 @@ router.get('/:id/facility-inspections', govStaffControllers.getFacilitiesInspect
 * @apiGroup Government Staff
 * @apiDescription  get facilities a staffer has inspected in a city route
 *
+* @apiParam {Number} id the id of the government staff
+* @apiParam {String} city the city name whose facilities we will get
 * @apiExample {js} Example usage:
 * const data = {
 * }
@@ -381,7 +399,7 @@ router.post('/', passport.authenticate('gov-staff', { session: false }), govStaf
 
 
 /**
-* @api {post} /  login a government staffer
+* @api {post} /login  login a government staffer
 * @apiVersion 1.0.0
 * @apiName  login a government staffer
 * @apiGroup Government Staff

@@ -101,3 +101,21 @@ exports.getAll = async function(req, res) {
 
     res.json(response)
 }
+
+
+// login a supervisor 
+exports.login = async function(req, res) {
+    
+    let response = { token: null, user: {} }
+
+    if( req.user && req.user.id ) {
+
+        let token_data = { id: req.user.id, type: 'SUPERVISOR', timestamp: Date.now() }
+        let token = jwt.sign({ data: token_data }, AppVars.jwt.secret)
+        response.token = token 
+        response.user = req.user 
+
+    }
+    res.json(response)
+    
+}

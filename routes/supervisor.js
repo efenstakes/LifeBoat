@@ -159,5 +159,36 @@ router.get('/:id/facilities', supervisorController.getFacilities)
 router.get('/', supervisorController.getAll)
 
 
+/**
+* @api {post} /login  login a supervisor
+* @apiVersion 1.0.0
+* @apiName  login a supervisor
+* @apiGroup Supervisors
+* @apiDescription  login a supervisor
+*
+* @apiExample {js} Example usage:
+* const data = {
+*    name: "name", 
+*    password: "password"    
+* }
+*
+* $http.defaults.headers.common["Authorization"] = token;
+* $http.post(url, data)
+*   .success((res, status) => doSomethingHere())
+*   .error((err, status) => doSomethingHere());
+*
+* @apiSuccess (Success 201) {String} String containing the authentication token
+* @apiSuccess (Success 201) {Object} Object containing the supervisor details
+* @apiSuccessExample {json} Success response:
+*     HTTPS 201 OK
+*     {
+*      "token": "tokenstring",
+*      "user": {} 
+*    }
+*
+*/
+router.post('/login', passport.authenticate('supervisors', { session: false }), supervisorController.login)
+  
+
 // export the module routes
 module.exports = router 

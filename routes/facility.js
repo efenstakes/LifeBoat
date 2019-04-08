@@ -57,6 +57,8 @@ router.post('/', passport.authenticate('gov-staff-jwt', { session: false }), fac
 * @apiGroup Facility 
 * @apiDescription  delete a facility 
 *
+* @apiParam (Request body) {Number} id the id of the government staff
+*
 * @apiExample {js} Example usage:
 * const data = {  
 *    "id": "id"    
@@ -173,6 +175,7 @@ router.get('/:id/kids/history', facilityControllers.getKidsHistory)
 * @apiDescription  check if a staffer is authenticated  
 *
 * @apiParam  {Array} supervisor  the array of supervisors for a facility
+*
 * @apiExample {js} Example usage:
 * const data = {  
 * }
@@ -225,7 +228,9 @@ router.get('/', facilityControllers.getAll)
 * @apiGroup Facility
 * @apiDescription  get all facilities in a city 
 *
+* @apiParam {Number} id the id of the facility 
 * @apiParam {String} city the city name whose facilities we are getting
+*
 * @apiExample {js} Example usage:
 * const data = {  
 * }

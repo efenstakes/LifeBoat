@@ -54,6 +54,8 @@ router.post('/', passport.authenticate('gov-staff-jwt', { session: false }), kid
 * @apiGroup Foster Kids 
 * @apiDescription  delete a kid from the system
 *
+* @apiParam {Number} id the id of the kid we are deleting
+*
 * @apiExample {js} Example usage:
 * const data = {  
 *    "id": "id"    
