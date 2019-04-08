@@ -60,6 +60,7 @@ It helps with these tasks:
 4. Authenticate system operations
 5. Assure donors and sponsors that they are contributing to verified facilities 
 6. Auditing the system for example who verified a facility, when and what report did they give?
+7. Facilitate foster kid adoption by willing families
 
 
 ## API
