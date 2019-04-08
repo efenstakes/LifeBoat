@@ -98,7 +98,8 @@ create table facility_inspections (
   facility_id int,
   gov_staff_id int,
   done_on datetime default NOW(),
-  report longtext,
+  private_report longtext deafult '',
+  public_report longtext deafult '',
   status enum('GOOD STANDING', 'STANDING', 'POOR STANDING'),
   foreign key(facility_id) references facilities(id) on delete cascade,
   foreign key(gov_staff_id) references gov_staff(id) on delete set null,
@@ -113,7 +114,8 @@ create table supervisor_inspections (
   supervisor_id int,
   gov_staff_id int,
   done_on datetime default NOW(),
-  report longtext,
+  private_report longtext deafult '',
+  public_report longtext deafult '',
   status enum('GOOD STANDING', 'STANDING', 'POOR STANDING'),
   foreign key(facility_id) references facilities(id) on delete set null,
   foreign key(gov_staff_id) references gov_staff(id) on delete set null,
@@ -121,3 +123,15 @@ create table supervisor_inspections (
   primary key(id)
 );
 
+-- keep reports made for kids either by their facility supervisors or government staffers
+create table kids_reports (
+    id int auto_increment,
+    foster_kid_id int,
+    private_report longtext deafult '',
+    public_report longtext deafult '',
+    made_on datetime default NOW(),
+    maker_id int,
+    maker_type enum('SUPERVISOR', 'GOV_STAFF'),
+    foreign key(foster_kid_id) references foster_kids(id),
+    primary key(id)
+)
