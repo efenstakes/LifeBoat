@@ -104,3 +104,34 @@ passport.use('supervisor-jwt', new JwtStrategy(jwt_opts, async function(jwt_payl
   
 }
 ));
+
+
+// handle jwt authentication for government staff and supervisors
+passport.use('all-jwt', new JwtStrategy(jwt_opts, async function(jwt_payload, done) {
+  
+  let { id, type, timestamp } = jwt_payload.data 
+  let query = '' 
+  let db_return = {}
+
+  // if this timestamp is older than 60 minutes, invalidate it
+  if( (Date.now() - timestamp) > 3600000 ) { 
+    return done(false)
+  }
+
+  if( type == 'GOV_STAFF' ) {
+    query = 'select * from gov_staff where id = ?'
+    let [ rows ] = await db.query(query, [ id ])
+    db_return = rows
+  } else {
+    query = 'select * from supervisors where id = ?'
+    let [ rows ] = await db.query(query, [ id ])  
+    db_return = rows 
+  }
+
+  if( db_return[0] ) {
+    return done(null, { user_type: type, user: db_return[0] })
+  }
+  return done(false)
+  
+}
+));
