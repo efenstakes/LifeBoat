@@ -1,6 +1,6 @@
 {
   "name": "lifeboat",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "foster care management system (fostering the fosters for the fostered ones)",
   "main": "index.js",
   "scripts": {
@@ -30,7 +30,9 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
     "gulp": "^4.0.0",
-    "gulp-apidoc": "^0.2.8"
+    "gulp-apidoc": "^0.2.8",
+    "mocha": "^6.1.2"
   }
 }
