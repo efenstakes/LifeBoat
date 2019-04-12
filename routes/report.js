@@ -194,7 +194,7 @@ router.post('/supervisor/:id', passport.authenticate('all-jwt', { session: false
 
 /**
 * @api {post} /kid  add a report for a certain kid  
-* @apiVersion 1.0.0
+* @apiVersion 1.2.0
 * @apiName  add kid report  
 * @apiGroup Reports
 * @apiDescription  add a report for a certain kid to the system   
@@ -234,7 +234,7 @@ router.post('/kid', passport.authenticate('all-jwt', { session: false }), report
 
 /**
 * @api {get} /kid/:id/   get public reports of a kid
-* @apiVersion 1.0.0
+* @apiVersion 1.2.0
 * @apiName  get a kid's public reports 
 * @apiGroup  Reports
 * @apiDescription   get public reports of a kid in an Array
@@ -260,7 +260,7 @@ router.get('/kid/:id', reportControllers.getPublicKidReports)
 
 /**
 * @api {post} /kid/:id/   get public and private reports of a kid
-* @apiVersion 1.0.0
+* @apiVersion 1.2.0
 * @apiName  get a kid's reports 
 * @apiGroup  Reports
 * @apiDescription   get public and private reports of a kid in an Array

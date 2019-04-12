@@ -20,6 +20,7 @@ var facilityControllers = require('../controllers/facility')
 * @apiParam (Request body) {String} lng its location longitude to help search it in maps
 * @apiParam (Request body) {String} city The Staff city
 * @apiParam (Request body) {String} staff_type The Staff staff_type
+* @apiParam (Request body) {String} tags the tags or identifiers associated with this site ex mental facility, toddlers
 *
 * @apiExample {js} Example usage:
 * const data = {

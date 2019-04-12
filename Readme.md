@@ -102,5 +102,5 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 
 # Licence
-The LifeBoat server is open-source software licensed under the [ISC Licence](https://www.isc.org/downloads/software-support-policy/isc-license/)
+The LifeBoat server is open-source software licensed under the [ISC Licence](https://www.isc.org/downloads/software-support-policy/isc-license/).
 A copy of the licence can be found above.

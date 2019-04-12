@@ -21,6 +21,7 @@ create table facilities (
   city varchar(30),
   lat varchar(90),
   lng varchar(90),
+  tags varchar(220),
   verified_by int,
   added_on datetime default NOW(),
   foreign key(verified_by) references gov_staff(id) on delete set null,

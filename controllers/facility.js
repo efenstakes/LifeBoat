@@ -7,12 +7,12 @@ var db = require('../config/mysql')
 // save a facility
 exports.save = async function(req, res) {
     let response = { saved: false, id: null }
-    let { name, city, lat, lng } = req.body
+    let { name, city, lat, lng, tags } = req.body
     
     if( req.user && req.user.staff_type !== 'REGULAR' ) {
 
-        let query = 'insert into facilities ( name, city, lat, lng, verified_by ) values( ?, ?, ?, ?, ? )'
-        let [ result ] = await db.query(query, [ name, city, lat, lng, req.user.id ])
+        let query = 'insert into facilities ( name, city, lat, lng, tags, verified_by ) values( ?, ?, ?, ?, ?, ? )'
+        let [ result ] = await db.query(query, [ name, city, lat, lng, tags, req.user.id ])
 
         if( result.affectedRows == 1 ) {
             response.saved = true 
