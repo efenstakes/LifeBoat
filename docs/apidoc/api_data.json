@@ -44,6 +44,13 @@
             "optional": false,
             "field": "staff_type",
             "description": "<p>The Staff staff_type</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "tags",
+            "description": "<p>the tags or identifiers associated with this site ex mental facility, toddlers</p>"
           }
         ]
       }
@@ -151,6 +158,19 @@
     "name": "delete_facility",
     "group": "Facility",
     "description": "<p>delete a facility</p>",
+    "parameter": {
+      "fields": {
+        "Request body": [
+          {
+            "group": "Request body",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>the id of the government staff</p>"
+          }
+        ]
+      }
+    },
     "examples": [
       {
         "title": "Example usage:",
@@ -230,6 +250,13 @@
     "parameter": {
       "fields": {
         "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>the id of the facility</p>"
+          },
           {
             "group": "Parameter",
             "type": "String",
@@ -647,6 +674,19 @@
     "name": "delete_kid",
     "group": "Foster_Kids",
     "description": "<p>delete a kid from the system</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>the id of the kid we are deleting</p>"
+          }
+        ]
+      }
+    },
     "examples": [
       {
         "title": "Example usage:",
@@ -836,7 +876,7 @@
       "examples": [
         {
           "title": "Success response:",
-          "content": " HTTPS 201 OK\n {\n  \"saved\": true|false,\n  \"id\": null|\"id\",\n  \"errors\": []  \n}",
+          "content": " HTTPS 201 OK\n {\n  \"placed\": true|false,\n  \"id\": null|\"id\",\n  \"errors\": []  \n}",
           "type": "json"
         }
       ]
@@ -897,6 +937,19 @@
     "name": "Check_Account_By_Id",
     "group": "Government_Staff",
     "description": "<p>Check if a Government Staff Account Exists By Id</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>the id of the government staff</p>"
+          }
+        ]
+      }
+    },
     "examples": [
       {
         "title": "Example usage:",
@@ -935,6 +988,19 @@
     "name": "Check_if_Account_Name_is_used",
     "group": "Government_Staff",
     "description": "<p>Check if a Government Staff Name is used</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>the id of the government staff</p>"
+          }
+        ]
+      }
+    },
     "examples": [
       {
         "title": "Example usage:",
@@ -1159,6 +1225,19 @@
     "name": "Get_a_Government_Staffer_Details",
     "group": "Government_Staff",
     "description": "<p>Get a Government Staffer Details</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>the id of the government staff</p>"
+          }
+        ]
+      }
+    },
     "examples": [
       {
         "title": "Example usage:",
@@ -1197,6 +1276,19 @@
     "name": "Set_a_Government_Staffer_s_Priviledge",
     "group": "Government_Staff",
     "description": "<p>Set the priviledge for a Government Staffer</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>the id of the government staff</p>"
+          }
+        ]
+      }
+    },
     "examples": [
       {
         "title": "Example usage:",
@@ -1318,6 +1410,19 @@
     "name": "get_facilities_a_staffer_has_inspected",
     "group": "Government_Staff",
     "description": "<p>get facilities a staffer has inspected</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>the id of the government staff</p>"
+          }
+        ]
+      }
+    },
     "examples": [
       {
         "title": "Example usage:",
@@ -1356,6 +1461,26 @@
     "name": "get_facilities_a_staffer_has_inspected_in_a_city_route",
     "group": "Government_Staff",
     "description": "<p>get facilities a staffer has inspected in a city route</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>the id of the government staff</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "city",
+            "description": "<p>the city name whose facilities we will get</p>"
+          }
+        ]
+      }
+    },
     "examples": [
       {
         "title": "Example usage:",
@@ -1394,6 +1519,19 @@
     "name": "get_facilities_a_staffer_has_verified",
     "group": "Government_Staff",
     "description": "<p>get facilities a staffer has verified</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>the id of the government staff</p>"
+          }
+        ]
+      }
+    },
     "examples": [
       {
         "title": "Example usage:",
@@ -1432,6 +1570,19 @@
     "name": "get_kids_a_staffer_has_verified_to_be_added_to_the_foster_system",
     "group": "Government_Staff",
     "description": "<p>get kids a staffer has verified to be added to the foster system</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>the id of the government staff</p>"
+          }
+        ]
+      }
+    },
     "examples": [
       {
         "title": "Example usage:",
@@ -1470,6 +1621,19 @@
     "name": "get_kids_that_this_staffer_has_placed_in_a_childrens_home_or_a_foster_home",
     "group": "Government_Staff",
     "description": "<p>get kids that this staffer has placed in a childrens home or a foster home</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>the id of the government staff</p>"
+          }
+        ]
+      }
+    },
     "examples": [
       {
         "title": "Example usage:",
@@ -1540,7 +1704,7 @@
   },
   {
     "type": "post",
-    "url": "/",
+    "url": "/login",
     "title": "login a government staffer",
     "version": "1.0.0",
     "name": "login_a_government_staffer",
@@ -1582,6 +1746,406 @@
     },
     "filename": "routes/gov-staff.js",
     "groupTitle": "Government_Staff"
+  },
+  {
+    "type": "post",
+    "url": "/",
+    "title": "Add a Medical History for a kid",
+    "version": "1.2.0",
+    "name": "Create_Medical_History",
+    "group": "Medical_History",
+    "description": "<p>add medical history for a kid</p>",
+    "permission": [
+      {
+        "name": "authenticated user"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Request body": [
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "kid_id",
+            "description": "<p>The ID of the kid whose record we are to add</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "disease",
+            "description": "<p>The disease the kid was dianosed with</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "description",
+            "description": "<p>The description of the disease or situation</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "hospital",
+            "description": "<p>The hospital the kid was treated at</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "const data = {\n   \"kid_id\": \"kid_id\",\n   \"disease\": \"disease\",\n   \"description\": \"description\",\n   \"hospital\": \"hospital\"\n}\n\n$http.defaults.headers.common[\"Authorization\"] = token;\n$http.post(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 201": [
+          {
+            "group": "Success 201",
+            "type": "Boolean",
+            "optional": false,
+            "field": "saved",
+            "description": "<p>Boolean to determine if Staff was saved successfully</p>"
+          },
+          {
+            "group": "Success 201",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The id of the saved staff (id they were saved)</p>"
+          },
+          {
+            "group": "Success 201",
+            "type": "List",
+            "optional": false,
+            "field": "errors",
+            "description": "<p>list of errors that were found with the data (if any)</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": " HTTPS 201 OK\n {\n   \"saved\": true|false,\n   \"id\": \"id\",\n   \"errors\": []\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/medical-history.js",
+    "groupTitle": "Medical_History",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "Unauthorized",
+            "description": "<p>Only authenticated users can access the endpoint.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Unauthorized response:",
+          "content": "HTTP 401 Unauthorized\n{\n  \"message\": \"Invalid credentials\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "delete",
+    "url": "/kid/:id",
+    "title": "Delete Medical history of a Kid",
+    "version": "1.2.0",
+    "name": "Delete_Medical_History",
+    "group": "Medical_History",
+    "permission": [
+      {
+        "name": "authenticated user"
+      }
+    ],
+    "description": "<p>Delete all Medical history of a Kid</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "ID",
+            "description": "<p>the id of the kid whose records we are deleting</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "const data = {\n}\n\n$http.defaults.headers.common[\"Authorization\"] = token;\n$http.delete(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 201": [
+          {
+            "group": "Success 201",
+            "type": "Boolean",
+            "optional": false,
+            "field": "deleted",
+            "description": "<p>to determine if delete was successful</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": " HTTPS 201 OK\n {\n  \"deleted\": true|false\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/medical-history.js",
+    "groupTitle": "Medical_History",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "Unauthorized",
+            "description": "<p>Only authenticated users can access the endpoint.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Unauthorized response:",
+          "content": "HTTP 401 Unauthorized\n{\n  \"message\": \"Invalid credentials\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "delete",
+    "url": "/",
+    "title": "Delete a Medical history record",
+    "version": "1.2.0",
+    "name": "Delete_Medical_History",
+    "group": "Medical_History",
+    "permission": [
+      {
+        "name": "authenticated user"
+      }
+    ],
+    "description": "<p>Delete a Medical history record</p>",
+    "parameter": {
+      "fields": {
+        "Request body": [
+          {
+            "group": "Request body",
+            "type": "Number",
+            "optional": false,
+            "field": "ID",
+            "description": "<p>the id of the medical record we are deleting</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "const data = {\n   \"id\": \"id\"\n}\n\n$http.defaults.headers.common[\"Authorization\"] = token;\n$http.delete(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 201": [
+          {
+            "group": "Success 201",
+            "type": "Boolean",
+            "optional": false,
+            "field": "deleted",
+            "description": "<p>to determine if delete was successful</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": " HTTPS 201 OK\n {\n  \"deleted\": true|false\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/medical-history.js",
+    "groupTitle": "Medical_History",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "Unauthorized",
+            "description": "<p>Only authenticated users can access the endpoint.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Unauthorized response:",
+          "content": "HTTP 401 Unauthorized\n{\n  \"message\": \"Invalid credentials\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "get",
+    "url": "/kid/:id/",
+    "title": "Get medical history of a kid",
+    "version": "1.0.0",
+    "name": "Get_medical_history",
+    "group": "Medical_History",
+    "description": "<p>Get medical history of a kid</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>the id of the kid whose records we are getting</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "const data = {\n}\n\n$http.get(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 201": [
+          {
+            "group": "Success 201",
+            "type": "Object",
+            "optional": false,
+            "field": "history",
+            "description": "<p>array of the kids records</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": " HTTPS 201 OK\n {\n  \"history\": []\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/medical-history.js",
+    "groupTitle": "Medical_History"
+  },
+  {
+    "type": "put",
+    "url": "/",
+    "title": "Update a Medical History record",
+    "version": "1.2.0",
+    "name": "Update_Medical_History",
+    "group": "Medical_History",
+    "description": "<p>Update a medical history record</p>",
+    "permission": [
+      {
+        "name": "authenticated user"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Request body": [
+          {
+            "group": "Request body",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>The ID of the record we are to delete</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "Date",
+            "optional": false,
+            "field": "well_on",
+            "description": "<p>The date the kid got okay</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "const data = {\n   \"id\": \"kid_id\",\n   \"well_on\": \"DateTime\"\n}\n\n$http.defaults.headers.common[\"Authorization\"] = token;\n$http.put(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 201": [
+          {
+            "group": "Success 201",
+            "type": "Boolean",
+            "optional": false,
+            "field": "updated",
+            "description": "<p>Boolean to determine if Staff was saved successfully</p>"
+          },
+          {
+            "group": "Success 201",
+            "type": "List",
+            "optional": false,
+            "field": "errors",
+            "description": "<p>list of errors that were found with the data (if any)</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": " HTTPS 201 OK\n {\n   \"updated\": true|false,\n   \"errors\": []\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/medical-history.js",
+    "groupTitle": "Medical_History",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "Unauthorized",
+            "description": "<p>Only authenticated users can access the endpoint.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Unauthorized response:",
+          "content": "HTTP 401 Unauthorized\n{\n  \"message\": \"Invalid credentials\"\n}",
+          "type": "json"
+        }
+      ]
+    }
   },
   {
     "type": "post",
@@ -1634,6 +2198,92 @@
             "optional": false,
             "field": "saved",
             "description": "<p>determines if the facility report was added</p>"
+          },
+          {
+            "group": "Success 201",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>containing the id of the report if it was added</p>"
+          },
+          {
+            "group": "Success 201",
+            "type": "Array",
+            "optional": false,
+            "field": "errors",
+            "description": "<p>list of errors if any occured</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": " HTTPS 201 OK\n {\n  \"saved\": true|false,\n  \"id\": null|\"id\",\n  \"errors\": []  \n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/report.js",
+    "groupTitle": "Reports"
+  },
+  {
+    "type": "post",
+    "url": "/kid",
+    "title": "add a report for a certain kid",
+    "version": "1.2.0",
+    "name": "add_kid_report",
+    "group": "Reports",
+    "description": "<p>add a report for a certain kid to the system</p>",
+    "parameter": {
+      "fields": {
+        "Request body": [
+          {
+            "group": "Request body",
+            "type": "Number",
+            "optional": false,
+            "field": "kid_id",
+            "description": "<p>id of kid whose report we are adding</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "private_report",
+            "description": "<p>the text describing the status of the kid</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "public_report",
+            "description": "<p>the text describing the status of the kid</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>the status of a kid 'GOOD STANDING' | 'STANDING' | 'POOR STANDING'</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "const data = {\n   \"kid_id\": \"Kid ID\",\n   \"private_report\": \"private report here\",\n   \"public_report\": \"public report here\",\n   \"status\": 'GOOD STANDING' | 'STANDING' | 'POOR STANDING'\n}\n\n$http.defaults.headers.common[\"Authorization\"] = token;\n$http.post(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 201": [
+          {
+            "group": "Success 201",
+            "type": "Boolean",
+            "optional": false,
+            "field": "saved",
+            "description": "<p>determines if the foster kid report was added</p>"
           },
           {
             "group": "Success 201",
@@ -1743,12 +2393,12 @@
   },
   {
     "type": "get",
-    "url": "/facility/:id/",
-    "title": "get reports of a facility",
-    "version": "1.0.0",
-    "name": "get_reports",
+    "url": "/kid/:id/",
+    "title": "get public reports of a kid",
+    "version": "1.2.0",
+    "name": "get_a_kid_s_public_reports",
     "group": "Reports",
-    "description": "<p>get reports of a facility in an Array</p>",
+    "description": "<p>get public reports of a kid in an Array</p>",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -1757,7 +2407,7 @@
             "type": "String",
             "optional": false,
             "field": "ID",
-            "description": "<p>the facility id whose reports we are fetching</p>"
+            "description": "<p>the kid id whose reports we are fetching</p>"
           }
         ]
       }
@@ -1777,7 +2427,109 @@
             "type": "Array",
             "optional": false,
             "field": "reports",
-            "description": "<p>array of report that have been made for this facility</p>"
+            "description": "<p>array of public reports that have been made for this kid</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": " HTTPS 201 OK\n {\n  \"reports\": [] \n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/report.js",
+    "groupTitle": "Reports"
+  },
+  {
+    "type": "post",
+    "url": "/kid/:id/",
+    "title": "get public and private reports of a kid",
+    "version": "1.2.0",
+    "name": "get_a_kid_s_reports",
+    "group": "Reports",
+    "description": "<p>get public and private reports of a kid in an Array</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "ID",
+            "description": "<p>the kid id whose reports we are fetching</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "const data = {  \n}\n\n$http.defaults.headers.common[\"Authorization\"] = token;\n$http.get(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 201": [
+          {
+            "group": "Success 201",
+            "type": "Array",
+            "optional": false,
+            "field": "reports",
+            "description": "<p>array of all reports that have been made for this kid</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": " HTTPS 201 OK\n {\n  \"reports\": [] \n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/report.js",
+    "groupTitle": "Reports"
+  },
+  {
+    "type": "post",
+    "url": "/facility/:id/",
+    "title": "get reports of a facility",
+    "version": "1.0.0",
+    "name": "get_facility_reports",
+    "group": "Reports",
+    "description": "<p>get reports of a facility in an Array</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "ID",
+            "description": "<p>the facility id whose reports we are fetching</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "const data = {  \n}\n\n$http.defaults.headers.common[\"Authorization\"] = token;\n$http.get(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 201": [
+          {
+            "group": "Success 201",
+            "type": "Array",
+            "optional": false,
+            "field": "reports",
+            "description": "<p>array of all report that have been made for this facility</p>"
           }
         ]
       },
@@ -1795,11 +2547,11 @@
   {
     "type": "get",
     "url": "/facility/:id/",
-    "title": "get reports of a facility",
+    "title": "get public reports of a facility",
     "version": "1.0.0",
     "name": "get_reports",
     "group": "Reports",
-    "description": "<p>get reports of a supervisor in an Array</p>",
+    "description": "<p>get public reports of a supervisor in an Array</p>",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -1828,7 +2580,109 @@
             "type": "Array",
             "optional": false,
             "field": "reports",
-            "description": "<p>array of report that have been made for this supervisor</p>"
+            "description": "<p>array of public report that have been made for this supervisor</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": " HTTPS 201 OK\n {\n  \"reports\": [] \n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/report.js",
+    "groupTitle": "Reports"
+  },
+  {
+    "type": "get",
+    "url": "/facility/:id/",
+    "title": "get reports of a facility",
+    "version": "1.0.0",
+    "name": "get_reports",
+    "group": "Reports",
+    "description": "<p>get public reports of a facility in an Array</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "ID",
+            "description": "<p>the facility id whose reports we are fetching</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "const data = {  \n}\n\n$http.get(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 201": [
+          {
+            "group": "Success 201",
+            "type": "Array",
+            "optional": false,
+            "field": "reports",
+            "description": "<p>array of public report that have been made for this facility</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": " HTTPS 201 OK\n {\n  \"reports\": [] \n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/report.js",
+    "groupTitle": "Reports"
+  },
+  {
+    "type": "post",
+    "url": "/supervisor/:id/",
+    "title": "get all reports of a supervisor",
+    "version": "1.0.0",
+    "name": "get_supervisor_reports",
+    "group": "Reports",
+    "description": "<p>get public and private reports of a supervisor in an Array</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "ID",
+            "description": "<p>the supervisor id whose reports we are fetching</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "const data = {  \n}\n\n$http.defaults.headers.common[\"Authorization\"] = token;\n$http.get(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 201": [
+          {
+            "group": "Success 201",
+            "type": "Array",
+            "optional": false,
+            "field": "reports",
+            "description": "<p>array of all reports that have been made for this supervisor</p>"
           }
         ]
       },
@@ -2127,6 +2981,51 @@
         {
           "title": "Success response:",
           "content": " HTTPS 201 OK\n {\n  \"facilities\": {}\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/supervisor.js",
+    "groupTitle": "Supervisors"
+  },
+  {
+    "type": "post",
+    "url": "/login",
+    "title": "login a supervisor",
+    "version": "1.0.0",
+    "name": "login_a_supervisor",
+    "group": "Supervisors",
+    "description": "<p>login a supervisor</p>",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "const data = {\n   name: \"name\", \n   password: \"password\"    \n}\n\n$http.defaults.headers.common[\"Authorization\"] = token;\n$http.post(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 201": [
+          {
+            "group": "Success 201",
+            "type": "String",
+            "optional": false,
+            "field": "String",
+            "description": "<p>containing the authentication token</p>"
+          },
+          {
+            "group": "Success 201",
+            "type": "Object",
+            "optional": false,
+            "field": "Object",
+            "description": "<p>containing the supervisor details</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": " HTTPS 201 OK\n {\n  \"token\": \"tokenstring\",\n  \"user\": {} \n}",
           "type": "json"
         }
       ]
