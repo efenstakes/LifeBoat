@@ -13,6 +13,7 @@ var facilityRoutes = require('./routes/facility')
 var supervisorRoutes = require('./routes/supervisor')
 var kidRoutes = require('./routes/foster-kid')
 var reportRoutes = require('./routes/report')
+var medicalHistoryRoutes = require('./routes/medical-history')
 
 // initializing the application instance
 var app = express()
@@ -35,6 +36,7 @@ app.use('/api/facility', facilityRoutes)
 app.use('/api/supervisor', supervisorRoutes)
 app.use('/api/kid', kidRoutes)
 app.use('/api/report', reportRoutes)
+app.use('/api/medical-history', medicalHistoryRoutes)
 app.use('/api', baseRoutes)
 
 
@@ -42,3 +44,6 @@ app.use('/api', baseRoutes)
 app.listen(9999, function(){
     console.log('server started at 9999')
 })
+
+// export the server instance for tests
+module.exports = app 

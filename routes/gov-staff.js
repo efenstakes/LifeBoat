@@ -52,7 +52,6 @@ var govStaffControllers = require('../controllers/gov-staff')
 *
 * @apiUse UnauthorizedError
 */
-// they are added by an admin or super admin staffer so use 
 router.post('/', passport.authenticate('gov-staff-jwt', { session: false }), govStaffControllers.save)
 
 
@@ -170,6 +169,7 @@ router.post('/:id/exists', govStaffControllers.exists)
 *
 */
 router.post('/:name/name-used', govStaffControllers.nameUsed)
+
 
 /**
 * @api {get} /:id/ Get a Government Staffer Details

@@ -23,11 +23,12 @@ passport.use('gov-staff', new LocalStrategy({
           let query = 'select * from gov_staff where name = ?'
           let [ rows ] = await db.query(query, [ username ])
           
-          if( rows[0] ){
+          if( rows && rows[0] ){
               let match = await bcrypt.compare(password, rows[0]['password'])
 
               if( match ) {
-                return done(null, rows[0])
+                let { password, ...uzer } = rows[0]
+                return done(null, uzer)
               }
           }
           return done(false)
@@ -44,11 +45,12 @@ passport.use('supervisors', new LocalStrategy({
       let query = 'select * from supervisors where name = ?'
       let [ rows ] = await db.query(query, [ username ])
       
-      if( rows[0] ){
+      if( rows && rows[0] ){
           let match = await bcrypt.compare(password, rows[0]['password'])
 
           if( match ) {
-            return done(null, rows[0])
+            let {password, ...uzer} = rows[0]
+            return done(null, uzer)
           }
       }
       return done(false)
@@ -65,7 +67,7 @@ jwt_opts.secretOrKey = AppVars.jwt.secret
 // handle jwt authentication for government staffers
 passport.use('gov-staff-jwt', new JwtStrategy(jwt_opts, async function(jwt_payload, done) {
   
-        let { id, timestamp } = jwt_payload.data  
+        let { id, timestamp } = jwt_payload.data 
 
         // if this timestamp is older than 60 minutes, invalidate it
         if( (Date.now() - timestamp) > 3600000 ) { 
@@ -73,11 +75,11 @@ passport.use('gov-staff-jwt', new JwtStrategy(jwt_opts, async function(jwt_paylo
         }
 
         let query = 'select * from gov_staff where id = ?'
-
         let [ rows ] = await db.query(query, [ id ])
 
-        if( rows[0] ) {
-          return done(null, rows[0])
+        if( rows && rows[0] ) {
+          let { password, ...uzer } = rows[0]
+          return done(null, uzer)
         }
         return done(false)
         
@@ -88,7 +90,7 @@ passport.use('gov-staff-jwt', new JwtStrategy(jwt_opts, async function(jwt_paylo
 passport.use('supervisor-jwt', new JwtStrategy(jwt_opts, async function(jwt_payload, done) {
                   
   let { id, timestamp } = jwt_payload.data  
-
+  
   // if this timestamp is older than 60 minutes, invalidate it
   if( (Date.now() - timestamp) > 3600000 ) { 
     return done(false)
@@ -97,8 +99,9 @@ passport.use('supervisor-jwt', new JwtStrategy(jwt_opts, async function(jwt_payl
   let query = 'select * from supervisors where id = ?'
   let [ rows ] = await db.query(query, [ id ])
 
-  if( rows[0] ) {
-    return done(null, rows[0])
+  if( rows && rows[0] ) {
+    let {password, ...uzer} = rows[0] 
+    return done(null, uzer)
   }
   return done(false)
   
@@ -125,11 +128,12 @@ passport.use('all-jwt', new JwtStrategy(jwt_opts, async function(jwt_payload, do
   } else {
     query = 'select * from supervisors where id = ?'
     let [ rows ] = await db.query(query, [ id ])  
-    db_return = rows 
+    db_return = rows
   }
 
   if( db_return[0] ) {
-    return done(null, { user_type: type, user: db_return[0] })
+    let { password, ...uzer } = db_return[0]
+    return done(null, { user_type: type, user: uzer })
   }
   return done(false)
   

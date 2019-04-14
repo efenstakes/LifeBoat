@@ -8,7 +8,11 @@ var db = require('../config/mysql')
 exports.save = async function(req, res) {
     let response = { saved: false, id: null, errors: [] }
     let { name, dob, reason_here, gender } = req.body 
-    let verified_by = req.user.id
+    let verified_by = null
+
+    if( req.user.user_type == 'GOV_STAFF' ) {
+        verified_by = req.user.user.id
+    }
 
     let query = 'insert into foster_kids ( name, dob, reason_here, verified_by ) values ( ?, ?, ?, ? )'
     let [ result ] = await db.query(query, [ name, dob, reason_here, verified_by ])
@@ -54,7 +58,7 @@ exports.exists = async function(req, res) {
 
 // check if a foster kid name is used  
 exports.nameUsed = async function(req, res) {
-    let response = { used: false, data: {} }
+    let response = { used: false }
     let { name } = req.params 
 
     let query = 'select * from foster_kids where name = ?'
@@ -62,7 +66,6 @@ exports.nameUsed = async function(req, res) {
 
     if( rows.length > 0 ) {
         response.used = true
-        response.data = rows[0]
     }
 
     res.json(response)
@@ -104,7 +107,7 @@ exports.getFacilities = async function(req, res) {
 
 // place a kid in a new facility  
 exports.placeKid = async function(req, res) {
-   let response = { saved: false, id: null, errors: [] }
+   let response = { placed: false, id: null, errors: [] }
 
    let { id, facility_id, reason } = req.body 
    let verified_by = req.user.id 
@@ -113,7 +116,7 @@ exports.placeKid = async function(req, res) {
    let [ result ] = await db.query(query, [ id, facility_id, verified_by, reason ])
 
    if( result && result.affectedRows == 1 ) {
-       response.saved = true 
+       response.placed = true 
        response.id = result.insertId
    }
    res.json(response)

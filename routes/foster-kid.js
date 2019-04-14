@@ -44,7 +44,7 @@ var kidsController = require('../controllers/foster-kid')
 *    }
 *
 */
-router.post('/', passport.authenticate('gov-staff-jwt', { session: false }), kidsController.save)
+router.post('/', passport.authenticate('all-jwt', { session: false }), kidsController.save)
 
 
 /**
@@ -104,6 +104,7 @@ router.delete('/', passport.authenticate('gov-staff-jwt', { session: false }), k
 *
 */
 router.get('/:id/exists', kidsController.exists)
+
 
 /**
 * @api {post} /:name/name-used  Check if a kid's Name is used
@@ -211,7 +212,7 @@ router.get('/:id/facilities', kidsController.getFacilities)
 * @apiSuccessExample {json} Success response:
 *     HTTPS 201 OK
 *     {
-*      "saved": true|false,
+*      "placed": true|false,
 *      "id": null|"id",
 *      "errors": []  
 *    }

@@ -1,8 +1,10 @@
 // external libraries imports
 var bcrypt = require('bcrypt')
+var jwt = require('jsonwebtoken')
 
 // internal modules/libraries imports
 var db = require('../config/mysql')
+var AppVars = require('../config/vars')
 
 
 // save a supervisor
@@ -65,10 +67,9 @@ exports.getDetails = async function(req, res) {
             return { facility: facility, record: record }
         })
         response.details = rows[0] 
-        response.history = facilityMap 
+        response.details.history = facilityMap 
         
     }
-
     res.json(response)
 }
 
