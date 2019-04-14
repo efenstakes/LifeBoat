@@ -17,6 +17,7 @@ var kidsController = require('../controllers/foster-kid')
 * @apiParam (Request body) {String} name the name of the kid
 * @apiParam (Request body) {DateTime} dob date this kid was added
 * @apiParam (Request body) {String} gender gender of the kid
+* @apiParam (Request body) {String} leaving_date  when the kid is expected to move out of the system
 * @apiParam (Request body) {String} reason_here reason this kid was added to the system
 *
 * @apiExample {js} Example usage:
@@ -24,7 +25,8 @@ var kidsController = require('../controllers/foster-kid')
 *    "name": "Nairobi Kids Facility",
 *    "dob": "2019-10-31 22:10:08",
 *    "gender": 'MALE'|'FEMALE',
-*    "reason_here": "a reason"
+*    "reason_here": "a reason",
+*    "leaving_date": "2020-10-31"
 * }
 *
 * $http.defaults.headers.common["Authorization"] = token;
@@ -197,8 +199,12 @@ router.get('/:id/facilities', kidsController.getFacilities)
 * @apiDescription  place a foster kid in a new facility
 *
 * @apiParam {String} id the id of the foster kid
+*
+* @apiParam (Request body) {String} leaving_date  when the kid is expected to move out of the facility
+*
 * @apiExample {js} Example usage:
 * const data = {
+*         "leaving_date": "2019-02-11"  
 * }
 *
 * $http.defaults.headers.common["Authorization"] = token;

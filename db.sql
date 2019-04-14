@@ -53,6 +53,7 @@ create table foster_kids (
   reason_here longtext,
   verified_by int,
   joined_on datetime default NOW(),
+  leaving_date date default null,
   foreign key(verified_by) references gov_staff(id) on delete set null,
   primary key(id)
 );
@@ -69,11 +70,12 @@ create table facility_kids (
   foster_kid_id int,
   verified_by int, 
   joined_on datetime default NOW(),
-  left_on datetime default NOW(),
+  left_on datetime default NOW(),        -- when they leave
+  leaving_date date default null,    -- when it's planned that they should leave
   reason longtext,
   foreign key(facility_id) references facilities(id) on delete cascade,
   foreign key(foster_kid_id) references foster_kids(id) on delete cascade,
-  -- foreign key(verified_by) references gov_staff(id),
+  foreign key(verified_by) references gov_staff(id),
   primary key(id)
 );
 

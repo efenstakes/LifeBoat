@@ -7,15 +7,15 @@ var db = require('../config/mysql')
 // save a foster kid
 exports.save = async function(req, res) {
     let response = { saved: false, id: null, errors: [] }
-    let { name, dob, reason_here, gender } = req.body 
+    let { name, dob, reason_here, gender, leaving_date } = req.body 
     let verified_by = null
 
     if( req.user.user_type == 'GOV_STAFF' ) {
         verified_by = req.user.user.id
     }
 
-    let query = 'insert into foster_kids ( name, dob, reason_here, verified_by ) values ( ?, ?, ?, ? )'
-    let [ result ] = await db.query(query, [ name, dob, reason_here, verified_by ])
+    let query = 'insert into foster_kids ( name, dob, reason_here, verified_by, gender, leaving_date ) values ( ?, ?, ?, ?, ?, ? )'
+    let [ result ] = await db.execute(query, [ name, dob, reason_here, verified_by, gender, leaving_date ])
 
     if( result.affectedRows == 1 ) {
         response.saved = true 
@@ -31,7 +31,7 @@ exports.delete = async function(req, res) {
     let { id } = req.body 
 
     let query = 'delete from foster_kids where id = ?'
-    let [ result ] = db.query(query, [ id ])
+    let [ result ] = db.execute(query, [ id ])
 
     if( result.affectedRows == 1 ) {
         response.deleted = true 
@@ -109,11 +109,11 @@ exports.getFacilities = async function(req, res) {
 exports.placeKid = async function(req, res) {
    let response = { placed: false, id: null, errors: [] }
 
-   let { id, facility_id, reason } = req.body 
+   let { id, facility_id, reason, leaving_date } = req.body 
    let verified_by = req.user.id 
 
-   let query = 'insert into facility_kids ( foster_kid_id, facility_id, verified_by, reason ) values ( ?, ?, ?, ? )'
-   let [ result ] = await db.query(query, [ id, facility_id, verified_by, reason ])
+   let query = 'insert into facility_kids ( foster_kid_id, facility_id, verified_by, reason, leaving_date ) values ( ?, ?, ?, ?, ? )'
+   let [ result ] = await db.execute(query, [ id, facility_id, verified_by, reason, leaving_date ])
 
    if( result && result.affectedRows == 1 ) {
        response.placed = true 
