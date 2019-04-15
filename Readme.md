@@ -51,6 +51,7 @@ It's aimed at solving these problems:
 * Blind decision making for government staff, using the system they can assign kids to the right facilities,
 right supervisors are assigned to the right facilities based on given reports.
 * Lack of trust in foster facilities by possible donors and sponsors
+* Lack of proper medical history database of foster kids
 
 
 It helps with these tasks:
@@ -61,6 +62,7 @@ It helps with these tasks:
 5. Assure donors and sponsors that they are contributing to verified facilities 
 6. Auditing the system for example who verified a facility, when and what report did they give?
 7. Facilitate foster kid adoption by willing families
+8. Keep medical histories of foster kids 
 
 
 ## API
