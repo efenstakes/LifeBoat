@@ -59,6 +59,32 @@ passport.use('supervisors', new LocalStrategy({
   )
 )
 
+
+// LocalStrategy for families authentication
+passport.use('families', new LocalStrategy({
+  usernameField: 'national_id', passwordField: 'password'
+}, async function(national_id, password, done) {
+
+    let query = 'select * from foster_families where parent_1_id = ? or parent_2_id = ?'
+    let [ rows ] = await db.query(query, [ national_id, national_id ])
+    
+    if( rows && rows[0] ){
+        let match = await bcrypt.compare(password, rows[0]['password'])
+
+        if( match ) {
+          let { password, ...uzer } = rows[0]
+          return done(null, uzer)
+        }
+    }
+    return done(false)
+
+}
+)
+)
+
+
+
+
 // set jwt options
 var jwt_opts = {}
 jwt_opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken()
@@ -109,6 +135,29 @@ passport.use('supervisor-jwt', new JwtStrategy(jwt_opts, async function(jwt_payl
 ));
 
 
+// handle jwt authentication for families 
+passport.use('family-jwt', new JwtStrategy(jwt_opts, async function(jwt_payload, done) {
+                  
+  let { id, timestamp } = jwt_payload.data  
+  
+  // if this timestamp is older than 60 minutes, invalidate it
+  if( (Date.now() - timestamp) > 3600000 ) { 
+    return done(false)
+  }
+
+  let query = 'select * from foster_families where id = ?'
+  let [ rows ] = await db.query(query, [ id ])
+
+  if( rows && rows[0] ) {
+    let {password, ...uzer} = rows[0] 
+    return done(null, uzer)
+  }
+  return done(false)
+  
+}
+));
+
+
 // handle jwt authentication for government staff and supervisors
 passport.use('all-jwt', new JwtStrategy(jwt_opts, async function(jwt_payload, done) {
   
@@ -125,10 +174,14 @@ passport.use('all-jwt', new JwtStrategy(jwt_opts, async function(jwt_payload, do
     query = 'select * from gov_staff where id = ?'
     let [ rows ] = await db.query(query, [ id ])
     db_return = rows
-  } else {
+  } else if( type == 'SUPERVISOR' ) {
     query = 'select * from supervisors where id = ?'
     let [ rows ] = await db.query(query, [ id ])  
     db_return = rows
+  } else {
+    let query = 'select * from foster_families where id = ?'
+    let [ rows ] = await db.query(query, [ id ])
+    db_return = rows  
   }
 
   if( db_return[0] ) {
