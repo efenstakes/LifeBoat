@@ -14,6 +14,9 @@ var supervisorRoutes = require('./routes/supervisor')
 var kidRoutes = require('./routes/foster-kid')
 var reportRoutes = require('./routes/report')
 var medicalHistoryRoutes = require('./routes/medical-history')
+var fosterFamilyRoutes = require('./routes/foster-family')
+var fosterRequestRoutes = require('./routes/foster-request')
+
 
 // initializing the application instance
 var app = express()
@@ -37,6 +40,8 @@ app.use('/api/supervisor', supervisorRoutes)
 app.use('/api/kid', kidRoutes)
 app.use('/api/report', reportRoutes)
 app.use('/api/medical-history', medicalHistoryRoutes)
+app.use('/api/foster-family', fosterFamilyRoutes)
+app.use('/api/foster-request', fosterRequestRoutes)
 app.use('/api', baseRoutes)
 
 
