@@ -3,5 +3,6 @@
     "version": "1.0.0",
     "description": "This is the LifeBoat API",
     "title": "LifeBoat API",
-    "url": "https://lifeboat.com"
+    "url": "https://lifeboat.com",
+    "author": "Efen"
 }

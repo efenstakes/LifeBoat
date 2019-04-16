@@ -31,6 +31,8 @@ router.post('/logout', function(request, response) {
     request.logout()
     response.json({ logged_out: true })
 })
+  
 
 
+// export the module routes
 module.exports = router

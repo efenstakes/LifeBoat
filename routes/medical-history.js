@@ -63,7 +63,7 @@ router.post('/', passport.authenticate('supervisor-jwt', { session: false }), me
 * @apiParam (Request body) {Number}  ID the id of the medical record we are deleting
 * @apiExample {js} Example usage:
 * const data = {
-*    "id": "id"
+*    "id": 12
 * }
 *
 * $http.defaults.headers.common["Authorization"] = token;
@@ -153,7 +153,7 @@ router.put('/', passport.authenticate('all-jwt', { session: false }), medHistory
 
 /**
 * @api  {get} /kid/:id/  Get medical history of a kid
-* @apiVersion  1.0.0
+* @apiVersion  1.2.0
 * @apiName  Get medical history
 * @apiGroup  Medical History
 * @apiDescription  Get medical history of a kid

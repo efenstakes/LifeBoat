@@ -465,6 +465,454 @@ define({ "api": [
     "groupTitle": "Facility"
   },
   {
+    "type": "post",
+    "url": "/",
+    "title": "add a foster family to the system",
+    "version": "1.2.0",
+    "name": "add_foster_family",
+    "group": "Foster_Family",
+    "description": "<p>add a foster family to the system</p>",
+    "parameter": {
+      "fields": {
+        "Request body": [
+          {
+            "group": "Request body",
+            "type": "Number",
+            "optional": false,
+            "field": "parent_1_id",
+            "description": "<p>the national id of the first parent</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "Number",
+            "optional": false,
+            "field": "parent_2_id",
+            "description": "<p>the national id of the second parent</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "parent_1_name",
+            "description": "<p>the name of the first parent</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "parent_2_name",
+            "description": "<p>the name of the second parent</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "Number",
+            "optional": false,
+            "field": "parent_1_phone",
+            "description": "<p>the phone number of the first parent</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "Number",
+            "optional": false,
+            "field": "parent_2_phone",
+            "description": "<p>the phone number of the second parent</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "parent_1_email",
+            "description": "<p>the email of the first parent</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "parent_2_email",
+            "description": "<p>the email of the second parent</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "city",
+            "description": "<p>the city that the family resides mostly</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "const data = {\n   \"parent_1_id\": 85432367534,\n   \"parent_2_id\": 857654213,\n   \"parent_1_name\": \"parent 1 name\",\n   \"parent_2_name\": \"parent 2 name\",\n   \"parent_1_phone\": +256 742312454,\n   \"parent_2_phone\": +256 742312054,\n   \"parent_1_email\": \"parent1@email.com\",\n   \"parent_2_email\": \"parent2@email.com\",\n   \"city\": \"Mombasa\"\n}\n\n$http.post(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 201": [
+          {
+            "group": "Success 201",
+            "type": "Boolean",
+            "optional": false,
+            "field": "saved",
+            "description": "<p>determines if the kid was added</p>"
+          },
+          {
+            "group": "Success 201",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>containing the id of the kid if it was added</p>"
+          },
+          {
+            "group": "Success 201",
+            "type": "Array",
+            "optional": false,
+            "field": "errors",
+            "description": "<p>list of errors if any occured</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": " HTTPS 201 OK\n {\n  \"saved\": true|false,\n  \"id\": null|\"id\",\n  \"errors\": []  \n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/foster-family.js",
+    "groupTitle": "Foster_Family"
+  },
+  {
+    "type": "delete",
+    "url": "/",
+    "title": "delete a foster family",
+    "version": "1.2.0",
+    "name": "delete_family",
+    "group": "Foster_Family",
+    "description": "<p>delete a foster family from the system</p>",
+    "parameter": {
+      "fields": {
+        "Request Body": [
+          {
+            "group": "Request Body",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>the id of the family we are deleting</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "const data = {  \n   \"id\": 98\n}\n\n$http.defaults.headers.common[\"Authorization\"] = token;\n$http.delete(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 201": [
+          {
+            "group": "Success 201",
+            "type": "Boolean",
+            "optional": false,
+            "field": "deleted",
+            "description": "<p>boolean determining if kid was deleted</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": " HTTPS 201 OK\n {\n  \"deleted\": true|false\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/foster-family.js",
+    "groupTitle": "Foster_Family"
+  },
+  {
+    "type": "get",
+    "url": "/:id/",
+    "title": "get foster family details",
+    "version": "1.2.0",
+    "name": "get_family_details",
+    "group": "Foster_Family",
+    "description": "<p>get foster family details</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>the id of the foster familt</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "const data = {\n}\n\n$http.get(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 201": [
+          {
+            "group": "Success 201",
+            "type": "Object",
+            "optional": false,
+            "field": "kid",
+            "description": "<p>object containing the kid's data</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": " HTTPS 201 OK\n {\n  \"family\": {}\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/foster-family.js",
+    "groupTitle": "Foster_Family"
+  },
+  {
+    "type": "get",
+    "url": "/:id/kids",
+    "title": "get kids this foster family has had",
+    "version": "1.2.0",
+    "name": "get_kid",
+    "group": "Foster_Family",
+    "description": "<p>get the history of kids that this foster family has had</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>the id of the foster kid</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "const data = {\n}\n\n$http.get(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 201": [
+          {
+            "group": "Success 201",
+            "type": "Array",
+            "optional": false,
+            "field": "facilities",
+            "description": "<p>a kid has been to</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": " HTTPS 201 OK\n {\n  \"kids\": []\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/foster-family.js",
+    "groupTitle": "Foster_Family"
+  },
+  {
+    "type": "post",
+    "url": "/:id/reports",
+    "title": "get reports that have been made about this family",
+    "version": "1.2.0",
+    "name": "get_reports",
+    "group": "Foster_Family",
+    "description": "<p>get reports that have been made about this family</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>the id of the foster family</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "const data = {\n}\n\n$http.defaults.headers.common[\"Authorization\"] = token;\n$http.post(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 201": [
+          {
+            "group": "Success 201",
+            "type": "Array",
+            "optional": false,
+            "field": "reports",
+            "description": "<p>list of reports about the family</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": " HTTPS 201 OK\n {\n  \"reports\": []  \n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/foster-family.js",
+    "groupTitle": "Foster_Family"
+  },
+  {
+    "type": "post",
+    "url": "/login",
+    "title": "login a family",
+    "version": "1.0.0",
+    "name": "login_a_family",
+    "group": "Foster_Family",
+    "description": "<p>login a family</p>",
+    "parameter": {
+      "fields": {
+        "Request Body": [
+          {
+            "group": "Request Body",
+            "type": "Number",
+            "optional": false,
+            "field": "national_id",
+            "description": "<p>the national id of either parents</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "const data = {\n   national_id: 85654336, \n   password: \"password\"    \n}\n\n$http.post(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 201": [
+          {
+            "group": "Success 201",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>string containing the authentication token</p>"
+          },
+          {
+            "group": "Success 201",
+            "type": "Object",
+            "optional": false,
+            "field": "user",
+            "description": "<p>object containing the supervisor details</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": " HTTPS 201 OK\n {\n  \"token\": \"tokenstring\",\n  \"user\": {} \n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/foster-family.js",
+    "groupTitle": "Foster_Family"
+  },
+  {
+    "type": "post",
+    "url": "/verify",
+    "title": "verify a foster family",
+    "version": "1.2.0",
+    "name": "verify_foster_family",
+    "group": "Foster_Family",
+    "description": "<p>verify a foster family incase it was not added by a government staffer</p>",
+    "parameter": {
+      "fields": {
+        "Request body": [
+          {
+            "group": "Request body",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>the id of the family</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "const data = {\n   \"id\": 3476\n}\n\n$http.defaults.headers.common[\"Authorization\"] = token;\n$http.post(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 201": [
+          {
+            "group": "Success 201",
+            "type": "Boolean",
+            "optional": false,
+            "field": "saved",
+            "description": "<p>determines if the kid was added</p>"
+          },
+          {
+            "group": "Success 201",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>containing the id of the kid if it was added</p>"
+          },
+          {
+            "group": "Success 201",
+            "type": "Array",
+            "optional": false,
+            "field": "errors",
+            "description": "<p>list of errors if any occured</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": "HTTPS 201 OK\n{\n  \"verified\": true|false\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/foster-family.js",
+    "groupTitle": "Foster_Family"
+  },
+  {
     "type": "get",
     "url": "/:id/exists",
     "title": "Check if a kid exists",
@@ -616,6 +1064,13 @@ define({ "api": [
             "group": "Request body",
             "type": "String",
             "optional": false,
+            "field": "leaving_date",
+            "description": "<p>when the kid is expected to move out of the system</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
             "field": "reason_here",
             "description": "<p>reason this kid was added to the system</p>"
           }
@@ -625,7 +1080,7 @@ define({ "api": [
     "examples": [
       {
         "title": "Example usage:",
-        "content": "const data = {\n   \"name\": \"Nairobi Kids Facility\",\n   \"dob\": \"2019-10-31 22:10:08\",\n   \"gender\": 'MALE'|'FEMALE',\n   \"reason_here\": \"a reason\"\n}\n\n$http.defaults.headers.common[\"Authorization\"] = token;\n$http.post(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "content": "const data = {\n   \"name\": \"Nairobi Kids Facility\",\n   \"dob\": \"2019-10-31 22:10:08\",\n   \"gender\": 'MALE'|'FEMALE',\n   \"reason_here\": \"a reason\",\n   \"leaving_date\": \"2020-10-31\"\n}\n\n$http.defaults.headers.common[\"Authorization\"] = token;\n$http.post(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
         "type": "js"
       }
     ],
@@ -837,13 +1292,22 @@ define({ "api": [
             "field": "id",
             "description": "<p>the id of the foster kid</p>"
           }
+        ],
+        "Request body": [
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "leaving_date",
+            "description": "<p>when the kid is expected to move out of the facility</p>"
+          }
         ]
       }
     },
     "examples": [
       {
         "title": "Example usage:",
-        "content": "const data = {\n}\n\n$http.defaults.headers.common[\"Authorization\"] = token;\n$http.post(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "content": "const data = {\n        \"leaving_date\": \"2019-02-11\"  \n}\n\n$http.defaults.headers.common[\"Authorization\"] = token;\n$http.post(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
         "type": "js"
       }
     ],
@@ -883,6 +1347,245 @@ define({ "api": [
     },
     "filename": "routes/foster-kid.js",
     "groupTitle": "Foster_Kids"
+  },
+  {
+    "type": "post",
+    "url": "/set-status",
+    "title": "accept or reject a foster request",
+    "version": "1.2.0",
+    "name": "accept_reject_foster_request",
+    "group": "Foster_Request",
+    "description": "<p>accept or reject a foster family request</p>",
+    "parameter": {
+      "fields": {
+        "Request body": [
+          {
+            "group": "Request body",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>the id of the request</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "Number",
+            "optional": false,
+            "field": "action",
+            "description": "<p>the action to take on request (accept or reject)</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "const data = {\n   \"id\": 3476\n   \"action\": 'ACCEPT' | 'REJECT'\n}\n\n$http.defaults.headers.common[\"Authorization\"] = token;\n$http.post(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 201": [
+          {
+            "group": "Success 201",
+            "type": "Boolean",
+            "optional": false,
+            "field": "done",
+            "description": "<p>determines if the change was made</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": "HTTPS 201 OK\n{\n  \"done\": true|false\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/foster-request.js",
+    "groupTitle": "Foster_Request"
+  },
+  {
+    "type": "post",
+    "url": "/",
+    "title": "add a foster request to the system",
+    "version": "1.2.0",
+    "name": "add_foster_family",
+    "group": "Foster_Request",
+    "description": "<p>add a foster request to the system</p>",
+    "parameter": {
+      "fields": {
+        "Request body": [
+          {
+            "group": "Request body",
+            "type": "Number",
+            "optional": false,
+            "field": "family_id",
+            "description": "<p>the id of the foster family</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "Number",
+            "optional": false,
+            "field": "foster_kid_id",
+            "description": "<p>the foster kid id</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "request_text",
+            "description": "<p>some text giving a bit of insight as to why</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "const data = {\n   \"family_id\": 53,\n   \"foster_kid_id\": 753,\n   \"request_text\": \"text\"\n}\n\n$http.defaults.headers.common[\"Authorization\"] = token;\n$http.post(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 201": [
+          {
+            "group": "Success 201",
+            "type": "Boolean",
+            "optional": false,
+            "field": "saved",
+            "description": "<p>determines if the kid was added</p>"
+          },
+          {
+            "group": "Success 201",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>containing the id of the request if it was added</p>"
+          },
+          {
+            "group": "Success 201",
+            "type": "Array",
+            "optional": false,
+            "field": "errors",
+            "description": "<p>list of errors if any occured</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": " HTTPS 201 OK\n {\n  \"saved\": true|false,\n  \"id\": null|\"id\",\n  \"errors\": []  \n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/foster-request.js",
+    "groupTitle": "Foster_Request"
+  },
+  {
+    "type": "delete",
+    "url": "/",
+    "title": "delete a foster request",
+    "version": "1.2.0",
+    "name": "delete_family",
+    "group": "Foster_Request",
+    "description": "<p>delete a foster request from the system</p>",
+    "parameter": {
+      "fields": {
+        "Request Body": [
+          {
+            "group": "Request Body",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>the id of the request we are deleting</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "const data = {  \n   \"id\": 98\n}\n\n$http.defaults.headers.common[\"Authorization\"] = token;\n$http.delete(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 201": [
+          {
+            "group": "Success 201",
+            "type": "Boolean",
+            "optional": false,
+            "field": "deleted",
+            "description": "<p>boolean determining if request was deleted</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": " HTTPS 201 OK\n {\n  \"deleted\": true|false\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/foster-request.js",
+    "groupTitle": "Foster_Request"
+  },
+  {
+    "type": "get",
+    "url": "/:id/",
+    "title": "get foster request details",
+    "version": "1.2.0",
+    "name": "get_request_details",
+    "group": "Foster_Request",
+    "description": "<p>get foster request details</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>the id of the foster request</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "const data = {\n}\n\n$http.get(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 201": [
+          {
+            "group": "Success 201",
+            "type": "Object",
+            "optional": false,
+            "field": "request",
+            "description": "<p>object containing the request's data</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": " HTTPS 201 OK\n {\n  \"request\": {}\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/foster-request.js",
+    "groupTitle": "Foster_Request"
   },
   {
     "type": "post",
@@ -1859,6 +2562,81 @@ define({ "api": [
   },
   {
     "type": "delete",
+    "url": "/",
+    "title": "Delete a Medical history record",
+    "version": "1.2.0",
+    "name": "Delete_Medical_History",
+    "group": "Medical_History",
+    "permission": [
+      {
+        "name": "authenticated user"
+      }
+    ],
+    "description": "<p>Delete a Medical history record</p>",
+    "parameter": {
+      "fields": {
+        "Request body": [
+          {
+            "group": "Request body",
+            "type": "Number",
+            "optional": false,
+            "field": "ID",
+            "description": "<p>the id of the medical record we are deleting</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "const data = {\n   \"id\": 12\n}\n\n$http.defaults.headers.common[\"Authorization\"] = token;\n$http.delete(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 201": [
+          {
+            "group": "Success 201",
+            "type": "Boolean",
+            "optional": false,
+            "field": "deleted",
+            "description": "<p>to determine if delete was successful</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": " HTTPS 201 OK\n {\n  \"deleted\": true|false\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/medical-history.js",
+    "groupTitle": "Medical_History",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "Unauthorized",
+            "description": "<p>Only authenticated users can access the endpoint.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Unauthorized response:",
+          "content": "HTTP 401 Unauthorized\n{\n  \"message\": \"Invalid credentials\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "delete",
     "url": "/kid/:id",
     "title": "Delete Medical history of a Kid",
     "version": "1.2.0",
@@ -1933,85 +2711,10 @@ define({ "api": [
     }
   },
   {
-    "type": "delete",
-    "url": "/",
-    "title": "Delete a Medical history record",
-    "version": "1.2.0",
-    "name": "Delete_Medical_History",
-    "group": "Medical_History",
-    "permission": [
-      {
-        "name": "authenticated user"
-      }
-    ],
-    "description": "<p>Delete a Medical history record</p>",
-    "parameter": {
-      "fields": {
-        "Request body": [
-          {
-            "group": "Request body",
-            "type": "Number",
-            "optional": false,
-            "field": "ID",
-            "description": "<p>the id of the medical record we are deleting</p>"
-          }
-        ]
-      }
-    },
-    "examples": [
-      {
-        "title": "Example usage:",
-        "content": "const data = {\n   \"id\": \"id\"\n}\n\n$http.defaults.headers.common[\"Authorization\"] = token;\n$http.delete(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
-        "type": "js"
-      }
-    ],
-    "success": {
-      "fields": {
-        "Success 201": [
-          {
-            "group": "Success 201",
-            "type": "Boolean",
-            "optional": false,
-            "field": "deleted",
-            "description": "<p>to determine if delete was successful</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Success response:",
-          "content": " HTTPS 201 OK\n {\n  \"deleted\": true|false\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "filename": "routes/medical-history.js",
-    "groupTitle": "Medical_History",
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "Unauthorized",
-            "description": "<p>Only authenticated users can access the endpoint.</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Unauthorized response:",
-          "content": "HTTP 401 Unauthorized\n{\n  \"message\": \"Invalid credentials\"\n}",
-          "type": "json"
-        }
-      ]
-    }
-  },
-  {
     "type": "get",
     "url": "/kid/:id/",
     "title": "Get medical history of a kid",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "name": "Get_medical_history",
     "group": "Medical_History",
     "description": "<p>Get medical history of a kid</p>",
@@ -2198,6 +2901,92 @@ define({ "api": [
             "optional": false,
             "field": "saved",
             "description": "<p>determines if the facility report was added</p>"
+          },
+          {
+            "group": "Success 201",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>containing the id of the report if it was added</p>"
+          },
+          {
+            "group": "Success 201",
+            "type": "Array",
+            "optional": false,
+            "field": "errors",
+            "description": "<p>list of errors if any occured</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": " HTTPS 201 OK\n {\n  \"saved\": true|false,\n  \"id\": null|\"id\",\n  \"errors\": []  \n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/report.js",
+    "groupTitle": "Reports"
+  },
+  {
+    "type": "post",
+    "url": "/family",
+    "title": "add a report for a family",
+    "version": "1.2.0",
+    "name": "add_family_report",
+    "group": "Reports",
+    "description": "<p>add a report for a foster family to the system</p>",
+    "parameter": {
+      "fields": {
+        "Request body": [
+          {
+            "group": "Request body",
+            "type": "Number",
+            "optional": false,
+            "field": "family_id",
+            "description": "<p>id of family whose report we are adding</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "public_report",
+            "description": "<p>the text describing the status of the family (public)</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "private_report",
+            "description": "<p>the text describing the status of the family (private)</p>"
+          },
+          {
+            "group": "Request body",
+            "type": "String",
+            "optional": false,
+            "field": "status",
+            "description": "<p>the status of a family 'GOOD STANDING' | 'STANDING' | 'POOR STANDING'</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "const data = {\n   \"family_id\": 234,\n   \"public_report\": \"report here\",\n   \"private_report\": \"report here\",\n   \"status\": 'GOOD STANDING' | 'STANDING' | 'POOR STANDING'\n}\n\n$http.defaults.headers.common[\"Authorization\"] = token;\n$http.post(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 201": [
+          {
+            "group": "Success 201",
+            "type": "Boolean",
+            "optional": false,
+            "field": "saved",
+            "description": "<p>determines if the family report was added</p>"
           },
           {
             "group": "Success 201",
@@ -2545,13 +3334,13 @@ define({ "api": [
     "groupTitle": "Reports"
   },
   {
-    "type": "get",
-    "url": "/facility/:id/",
-    "title": "get public reports of a facility",
-    "version": "1.0.0",
-    "name": "get_reports",
+    "type": "post",
+    "url": "/family/:id/",
+    "title": "get reports of a family",
+    "version": "1.2.0",
+    "name": "get_family_reports",
     "group": "Reports",
-    "description": "<p>get public reports of a supervisor in an Array</p>",
+    "description": "<p>get reports of a family in an Array</p>",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -2560,7 +3349,58 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "ID",
-            "description": "<p>the supervisor id whose reports we are fetching</p>"
+            "description": "<p>the family id whose reports we are fetching</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "const data = {  \n}\n\n$http.defaults.headers.common[\"Authorization\"] = token;\n$http.get(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 201": [
+          {
+            "group": "Success 201",
+            "type": "Array",
+            "optional": false,
+            "field": "reports",
+            "description": "<p>array of all report that have been made for this family</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": " HTTPS 201 OK\n {\n  \"reports\": [] \n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/report.js",
+    "groupTitle": "Reports"
+  },
+  {
+    "type": "get",
+    "url": "/family/:id/",
+    "title": "get reports of a family",
+    "version": "1.2.0",
+    "name": "get_family_reports",
+    "group": "Reports",
+    "description": "<p>get public reports of a family in an Array</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "ID",
+            "description": "<p>the family id whose reports we are fetching</p>"
           }
         ]
       }
@@ -2580,7 +3420,7 @@ define({ "api": [
             "type": "Array",
             "optional": false,
             "field": "reports",
-            "description": "<p>array of public report that have been made for this supervisor</p>"
+            "description": "<p>array of public report that have been made for this family</p>"
           }
         ]
       },
@@ -2632,6 +3472,57 @@ define({ "api": [
             "optional": false,
             "field": "reports",
             "description": "<p>array of public report that have been made for this facility</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success response:",
+          "content": " HTTPS 201 OK\n {\n  \"reports\": [] \n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "routes/report.js",
+    "groupTitle": "Reports"
+  },
+  {
+    "type": "get",
+    "url": "/facility/:id/",
+    "title": "get public reports of a facility",
+    "version": "1.0.0",
+    "name": "get_reports",
+    "group": "Reports",
+    "description": "<p>get public reports of a supervisor in an Array</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "ID",
+            "description": "<p>the supervisor id whose reports we are fetching</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "const data = {  \n}\n\n$http.get(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 201": [
+          {
+            "group": "Success 201",
+            "type": "Array",
+            "optional": false,
+            "field": "reports",
+            "description": "<p>array of public report that have been made for this supervisor</p>"
           }
         ]
       },
@@ -2996,10 +3887,30 @@ define({ "api": [
     "name": "login_a_supervisor",
     "group": "Supervisors",
     "description": "<p>login a supervisor</p>",
+    "parameter": {
+      "fields": {
+        "Request Body": [
+          {
+            "group": "Request Body",
+            "type": "Number",
+            "optional": false,
+            "field": "name",
+            "description": "<p>the name of the supervisor</p>"
+          },
+          {
+            "group": "Request Body",
+            "type": "Number",
+            "optional": false,
+            "field": "password",
+            "description": "<p>the password of the supervisor</p>"
+          }
+        ]
+      }
+    },
     "examples": [
       {
         "title": "Example usage:",
-        "content": "const data = {\n   name: \"name\", \n   password: \"password\"    \n}\n\n$http.defaults.headers.common[\"Authorization\"] = token;\n$http.post(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
+        "content": "const data = {\n   name: \"name\", \n   password: \"password\"    \n}\n\n$http.post(url, data)\n  .success((res, status) => doSomethingHere())\n  .error((err, status) => doSomethingHere());",
         "type": "js"
       }
     ],
@@ -3010,15 +3921,15 @@ define({ "api": [
             "group": "Success 201",
             "type": "String",
             "optional": false,
-            "field": "String",
-            "description": "<p>containing the authentication token</p>"
+            "field": "token",
+            "description": "<p>String containing the authentication token</p>"
           },
           {
             "group": "Success 201",
             "type": "Object",
             "optional": false,
-            "field": "Object",
-            "description": "<p>containing the supervisor details</p>"
+            "field": "user",
+            "description": "<p>Object containing the supervisor details</p>"
           }
         ]
       },

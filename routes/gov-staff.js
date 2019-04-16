@@ -458,4 +458,5 @@ router.post('/login', passport.authenticate('gov-staff', { session: false }), go
 router.post('/is-authenticated', passport.authenticate('gov-staff-jwt', { session: false }), govStaffControllers.isAuthenticated)
 
 
+// export the module routes
 module.exports = router 

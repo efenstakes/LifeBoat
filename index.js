@@ -40,7 +40,7 @@ app.use('/api/supervisor', supervisorRoutes)
 app.use('/api/kid', kidRoutes)
 app.use('/api/report', reportRoutes)
 app.use('/api/medical-history', medicalHistoryRoutes)
-app.use('/api/foster-family', fosterFamilyRoutes)
+app.use('/api/family', fosterFamilyRoutes)
 app.use('/api/foster-request', fosterRequestRoutes)
 app.use('/api', baseRoutes)
 

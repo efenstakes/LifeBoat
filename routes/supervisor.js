@@ -166,19 +166,21 @@ router.get('/', supervisorController.getAll)
 * @apiGroup Supervisors
 * @apiDescription  login a supervisor
 *
+* @apiParam (Request Body) {Number} name  the name of the supervisor
+* @apiParam (Request Body) {Number} password  the password of the supervisor
+*
 * @apiExample {js} Example usage:
 * const data = {
 *    name: "name", 
 *    password: "password"    
 * }
 *
-* $http.defaults.headers.common["Authorization"] = token;
 * $http.post(url, data)
 *   .success((res, status) => doSomethingHere())
 *   .error((err, status) => doSomethingHere());
 *
-* @apiSuccess (Success 201) {String} String containing the authentication token
-* @apiSuccess (Success 201) {Object} Object containing the supervisor details
+* @apiSuccess (Success 201) {String} token  String containing the authentication token
+* @apiSuccess (Success 201) {Object} user  Object containing the supervisor details
 * @apiSuccessExample {json} Success response:
 *     HTTPS 201 OK
 *     {

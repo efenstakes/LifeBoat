@@ -287,5 +287,101 @@ router.post('/kid/:id', passport.authenticate('all-jwt', { session: false }), re
 
 
 
+/**
+* @api {post} /family  add a report for a family  
+* @apiVersion 1.2.0
+* @apiName  add family report  
+* @apiGroup Reports
+* @apiDescription  add a report for a foster family to the system   
+*
+* @apiParam (Request body) {Number} family_id  id of family whose report we are adding 
+* @apiParam (Request body) {String} public_report  the text describing the status of the family (public)
+* @apiParam (Request body) {String} private_report  the text describing the status of the family (private)
+* @apiParam (Request body) {String} status  the status of a family 'GOOD STANDING' | 'STANDING' | 'POOR STANDING'
+*
+* @apiExample {js} Example usage:
+* const data = {
+*    "family_id": 234,
+*    "public_report": "report here",
+*    "private_report": "report here",
+*    "status": 'GOOD STANDING' | 'STANDING' | 'POOR STANDING'
+* }
+*
+* $http.defaults.headers.common["Authorization"] = token;
+* $http.post(url, data)
+*   .success((res, status) => doSomethingHere())
+*   .error((err, status) => doSomethingHere());
+*   
+* @apiSuccess (Success 201) {Boolean} saved determines if the family report was added
+* @apiSuccess (Success 201) {String} id containing the id of the report if it was added
+* @apiSuccess (Success 201) {Array} errors list of errors if any occured 
+* @apiSuccessExample {json} Success response:
+*     HTTPS 201 OK
+*     {
+*      "saved": true|false,
+*      "id": null|"id",
+*      "errors": []  
+*    }
+*
+*/
+router.post('/family', passport.authenticate('gov-staff-jwt', { session: false }), reportControllers.saveForFamily)
+
+
+/**
+* @api {get} /family/:id/   get reports of a family
+* @apiVersion 1.2.0
+* @apiName  get family reports 
+* @apiGroup  Reports
+* @apiDescription   get public reports of a family in an Array
+*
+* @apiParam {String} ID the family id whose reports we are fetching
+* @apiExample {js} Example usage:
+* const data = {  
+* }
+*
+* $http.get(url, data)
+*   .success((res, status) => doSomethingHere())
+*   .error((err, status) => doSomethingHere());
+*
+* @apiSuccess (Success 201) {Array} reports  array of public report that have been made for this family
+* @apiSuccessExample {json} Success response:
+*     HTTPS 201 OK
+*     {
+*      "reports": [] 
+*    }
+*
+*/
+router.get('/family/:id', reportControllers.getPublicFamilyReports)
+
+
+/**
+* @api {post} /family/:id/   get reports of a family
+* @apiVersion 1.2.0
+* @apiName  get family reports 
+* @apiGroup  Reports
+* @apiDescription   get reports of a family in an Array
+*
+* @apiParam {String} ID the family id whose reports we are fetching
+* @apiExample {js} Example usage:
+* const data = {  
+* }
+*
+* $http.defaults.headers.common["Authorization"] = token;
+* $http.get(url, data)
+*   .success((res, status) => doSomethingHere())
+*   .error((err, status) => doSomethingHere());
+*
+* @apiSuccess (Success 201) {Array} reports  array of all report that have been made for this family
+* @apiSuccessExample {json} Success response:
+*     HTTPS 201 OK
+*     {
+*      "reports": [] 
+*    }
+*
+*/
+router.post('/family/:id', reportControllers.getFamilyReports)
+
+
+
 // export the module routes
 module.exports = router

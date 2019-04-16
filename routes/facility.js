@@ -251,4 +251,5 @@ router.get('/', facilityControllers.getAll)
 router.get('/all/city/:city', facilityControllers.getAllInCity)
 
 
+// export the module routes
 module.exports = router 

@@ -157,7 +157,7 @@ exports.saveForKid = async function(req, res) {
 
     let { foster_kid_id, public_report, private_report, status } = req.body
 
-    let query = 'insert into supervisor_inspections ( foster_kid_id, maker_id, maker_type, public_report, private_report, status ) values( ?, ?, ?, ?, ? )'
+    let query = 'insert into foster_kids_reports ( foster_kid_id, maker_id, maker_type, public_report, private_report, status ) values( ?, ?, ?, ?, ? )'
     let [ result ] = await db.query(query, [ foster_kid_id, maker_id, maker_type, public_report, private_report, status ])
 
     if( result.affectedRows  == 1 ) {
@@ -174,7 +174,7 @@ exports.getPublicKidReports = async function(req, res) {
     let response = { reports: [] }
     
     let { id } = req.params
-    let query = 'select * from kid_reports where foster_kid_id = ?'
+    let query = 'select * from foster_kids_reports where foster_kid_id = ?'
 
     let [ result ] = await db.execute(query, [ id ])
 
@@ -207,7 +207,7 @@ exports.getKidReports = async function(req, res) {
     let response = { reports: [] }
     
     let { id } = req.params
-    let query = 'select * from kid_reports where foster_kid_id = ?'
+    let query = 'select * from foster_kids_reports where foster_kid_id = ?'
 
     let [ result ] = await db.execute(query, [ id ])
 
@@ -226,6 +226,74 @@ exports.getKidReports = async function(req, res) {
             maker = supervisor[0]
         }         
         let combo = { inspection: kid_inspection, maker }
+        reports.push(combo)
+    }
+    response.reports = reports
+
+    res.json(response)
+}
+
+
+
+
+// write report when a family is checked
+exports.saveForFamily = async function(req, res) {
+    let response = { saved: false, id: null, errors: [] }
+    
+    let { gov_staff_id } = req.user.id
+    let { family_id, public_report, private_report, status } = req.body
+
+    let query = 'insert into family_inspections ( family_id, gov_staff_id, public_report, private_report, status ) values( ??, ??, ??, ?? )'
+    let [ result ] = await db.query(query, [ family_id, gov_staff_id, public_report, private_report, status ])
+
+    if( result.affectedRows  == 1 ) {
+        response.saved = true 
+        response.id = result.insertId
+    }
+    res.json(response)
+
+}
+
+
+// get public reports of a family
+exports.getPublicFamilyReports = async function(req, res) {
+    let response = { reports: [] }
+    
+    let { id } = req.params
+
+    let query = 'select * from family_inspections where family_id = ?'
+    let govStaffQuery = 'select * from gov_staff where id = ?'
+
+    let [ result ] = await db.execute(query, [ id ])
+
+    let reports = []
+    for (const family_inspection in result) {
+        let { private_report, ...inspection } = family_inspection
+
+        let [ govStaffResult ] = await db.execute(govStaffQuery, [ family_inspection.gov_staff_id ])
+        let combo = { inspection: inspection, gov_staff: govStaffResult }        
+        reports.push(combo)
+    }
+    response.reports = reports
+
+    res.json(response)
+}
+
+// get all reports of a family (public and private)
+exports.getFamilyReports = async function(req, res) {
+    let response = { reports: [] }
+    
+    let { id } = req.params
+
+    let query = 'select * from family_inspections where family_id = ?'
+    let govStaffQuery = 'select * from gov_staff where id = ?'
+
+    let [ result ] = await db.execute(query, [ id ])
+
+    let reports = []
+    for (const family_inspection in result) {
+        let [ govStaffResult ] = await db.execute(govStaffQuery, [ family_inspection.gov_staff_id ])
+        let combo = { inspection: family_inspection, gov_staff: govStaffResult }        
         reports.push(combo)
     }
     response.reports = reports
