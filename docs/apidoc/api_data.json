@@ -739,7 +739,7 @@
     "groupTitle": "Foster_Family"
   },
   {
-    "type": "post",
+    "type": "get",
     "url": "/:id/reports",
     "title": "get reports that have been made about this family",
     "version": "1.2.0",
@@ -1390,7 +1390,7 @@
             "group": "Success 201",
             "type": "Boolean",
             "optional": false,
-            "field": "done",
+            "field": "set",
             "description": "<p>determines if the change was made</p>"
           }
         ]
@@ -1398,7 +1398,7 @@
       "examples": [
         {
           "title": "Success response:",
-          "content": "HTTPS 201 OK\n{\n  \"done\": true|false\n}",
+          "content": "HTTPS 201 OK\n{\n  \"set\": true|false\n}",
           "type": "json"
         }
       ]
